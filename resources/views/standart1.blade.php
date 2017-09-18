@@ -10,9 +10,9 @@
                 <div class="panel-body">
                     {!! Form::open(['url' => route('post_standart1')]) !!}
                     <div class="form-group">
-                        <label>1.1.a Kejelasan dan kerealistikan visi, misi, tujuan, dan sasaran program studi.</label>
+                        <label>1.1.a &nbsp; Kejelasan dan kerealistikan visi, misi, tujuan, dan sasaran program studi.</label>
                         <div class="radio">
-                            <label>{{ Form::radio('1.1.a', 4) }}Memiliki visi, misi, tujuan dan sasaran yang sangat jelas dan sangat realistik</label> 
+                            <label>{{ Form::radio('1.1.a', 4) }}Memiliki visi, misi, tujuan dan sasaran yang sangat jelas dan sangat realistik</label>
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('1.1.a', 3) }}Memiliki visi, misi, tujuan dan sasaran jelas dan realistik</label>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>1.1.b Strategi pencapaian sasaran dengan rentang waktu yang jelas dan didukung oleh dokumen</label>
+                        <label>1.1.b &nbsp; Strategi pencapaian sasaran dengan rentang waktu yang jelas dan didukung oleh dokumen</label>
                         <div class="radio">
                             <label>
                                 {{ Form::radio('1.1.b', 4) }}
@@ -75,9 +75,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>1.2 Sosialisasi visi-misi. Sosialisasi yang efektif tercermin dari tingkat pemahaman seluruh pemangku kepentingan internal yaitu sivitas akademika (dosen dan mahasiswa) dan tenaga kependidikan</label>
+                        <label>1.2 &nbsp; Sosialisasi visi-misi. Sosialisasi yang efektif tercermin dari tingkat pemahaman seluruh pemangku kepentingan internal yaitu sivitas akademika (dosen dan mahasiswa) dan tenaga kependidikan</label>
                         <div class="radio">
-                            <label>{{ Form::radio('1.2', 4) }}Dipahami dengan baik oleh seluruh sivitas akademika dan tenaga kependidikan</label> 
+                            <label>{{ Form::radio('1.2', 4) }}Dipahami dengan baik oleh seluruh sivitas akademika dan tenaga kependidikan</label>
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('1.2', 3) }}Dipahami dengan baik oleh sebagian sivitas akademika dan tenaga kependidikan</label>
@@ -96,7 +96,7 @@
                     {{ Form::submit('NEXT TO STANDART 2', ['class' => 'btn btn-block btn-success']) }}
 
                     {!! Form::close() !!}
-                    <a href="{{ route('standart2') }}" id="next">a</a>
+                    <a href="{{ route('standart2') }}" id="next">></a>
                 </div>
             </div>
         </div>

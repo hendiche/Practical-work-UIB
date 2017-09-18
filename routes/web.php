@@ -25,4 +25,13 @@ Route::post('/standart1', 'HomeController@standart1')->name('post_standart1');
 Route::get('/standart2', 'HomeController@toStandart2')->name('standart2');
 Route::post('/standart2', 'HomeController@standart2')->name('post_standart2');
 
+Route::get('/standart3', 'HomeController@toStandart3')->name('standart3');
+Route::post('/standart3', 'HomeController@standart3')->name('post_standart3');
+
+Route::get('/standart4', 'HomeController@toStandart4')->name('standart4');
+Route::post('/standart4', 'HomeController@standart4')->name('post_standart4');
+
+Route::get('/standart5', 'HomeController@toStandart5')->name('standart5');
+Route::post('/standart5', 'HomeController@standart5')->name('post_standart5');
+
 Auth::routes();
