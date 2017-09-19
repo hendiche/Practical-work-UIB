@@ -17,7 +17,7 @@
                     <div class="panel-heading">STANDART 3</div>
                     <div class="panel-body">
                         {!! Form::open(['url' => route('post_standart3')]) !!}
-                            <label>3.1.1.a &nbsp; Rasio calon mahasiswa yang ikut seleksi terhadap daya tampuang</label>
+                            <label>3.1.1.a &nbsp; Rasio calon mahasiswa yang ikut seleksi terhadap daya tampung</label>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
