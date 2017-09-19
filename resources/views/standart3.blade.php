@@ -25,7 +25,7 @@
                                             <label>Jumlah Daya Tampung</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1a2" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.1a2" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@
                                             <label>Jumlah Calon Mahasiswa yang Ikut Seleksi</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1a3" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.1a3" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                             <label>Jumlah Calon Mahasiswa yang Lulus Seleksi</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1b4" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.1b4" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                             <label>Jumlah Mahasiswa Baru yang Reguler(Bukan Transfer)</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1b5" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.1b5" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                             <label>Jumlah Mahasiswa Baru yang Transfer</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1c6" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.1c6" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@
                                             <label>Jumlah Mahasiswa Baru yang bukan Transfer</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1c5" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.1c5" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                                             <label>Rata-rata IPK TS</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS" class="form-control" />
+                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS" class="form-control" step="0.01" min="1" max="4" required />
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@
                                             <label>Rata-rata IPK TS-1</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS-1" class="form-control" />
+                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS-1" class="form-control" step="0.01" min="1" max="4" required />
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                                             <label>Rata-rata IPK TS-2</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS-2" class="form-control" />
+                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS-2" class="form-control" step="0.01" min="1" max="4" required />
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@
                                             <label>Rata-rata IPK TS-3</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS-3" class="form-control" />
+                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS-3" class="form-control" step="0.01" min="1" max="4" required />
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                                             <label>Rata-rata IPK TS-4</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS-4" class="form-control" />
+                                            <input type="number" name="3.1.1d[]" placeholder="Rata IPK TS-4" class="form-control" step="0.01" min="1" max="4" required />
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@
                             <div class="form-group">
                                 <label>3.1.2 &nbsp; Penerimaan mahasiswa non-reguler selayaknya tidak membuat beban dosen sangat berat, jauh melebihi beban ideal (sekitar 12 sks)</label>
                                 <div class="radio">
-                                    <label>{{ Form::radio('3.1.2', 4) }}Jumlah mahasiswa yang diterima masih memungkinkan dosen mengajar seluruh mahasiswa dengan total beban mendekati ideal, yaitu kurang atau sama dengan 13 sks</label>
+                                    <label>{{ Form::radio('3.1.2', 4, 0, ['required' => 'true']) }}Jumlah mahasiswa yang diterima masih memungkinkan dosen mengajar seluruh mahasiswa dengan total beban mendekati ideal, yaitu kurang atau sama dengan 13 sks</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('3.1.2', 3) }}Jumlah mahasiswa yang diterima masih memungkinkan dosen mengajar seluruh mahasiswa dengan total beban lebih dari 13 s.d 15 sks</label>
@@ -163,7 +163,7 @@
                             <div class="form-group">
                                 <label>3.1.3 &nbsp; Penghargaan atas prestasi mahasiswa di bidang nalar, bakat dan minat.</label>
                                 <div class="radio">
-                                    <label>{{ Form::radio('3.1.3', 4) }}Ada bukti penghargaan juara lomba ilmiah, olah raga, maupun seni tingkat nasional atau internasional</label>
+                                    <label>{{ Form::radio('3.1.3', 4, 0, ['required' => 'true']) }}Ada bukti penghargaan juara lomba ilmiah, olah raga, maupun seni tingkat nasional atau internasional</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('3.1.3', 3) }}Ada bukti penghargaan juara lomba ilmiah, olah raga, maupun seni tingkat wilayah</label>
@@ -186,7 +186,7 @@
                                             <label>Kotak (f)</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.4af" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.4af" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@
                                             <label>Kotak (d)</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.4ad" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.4ad" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                                             <label>Kotak (a)</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.4ba" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.4ba" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +219,7 @@
                                             <label>Kotak (b)</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.4bb" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.4bb" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +229,7 @@
                                             <label>kotak (c)</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.4bc" placeholder="Input Jumlah" class="form-control" />
+                                            <input type="number" name="3.1.4bc" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
                                     <li>Layanan kesehatan</li>
                                 </ul></label>
                                 <div class="radio">
-                                    <label>{{ Form::radio('3.2.1', 4) }}Ada semua (5 jenis) pelayanan mahasiswa yang dapat diakses</label>
+                                    <label>{{ Form::radio('3.2.1', 4, 0, ['required' => 'true']) }}Ada semua (5 jenis) pelayanan mahasiswa yang dapat diakses</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('3.2.1', 3) }}Ada jenis layanan pertama sampai dengan ke-tiga</label>
@@ -273,7 +273,7 @@
                                     <label>Bimbingan dan konseling</label>
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" />
+                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" required />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -281,7 +281,7 @@
                                     <label>Minat dan bakar (ekstrakulikuler)</label>
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" />
+                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" required />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -289,7 +289,7 @@
                                     <label>Pembinaan <i>soft skill</i></label>
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" />
+                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" required />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -297,7 +297,7 @@
                                     <label>Layanan beasiswa</label>
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" />
+                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" required />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -305,13 +305,13 @@
                                     <label>Layanan kesehatan</label>
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" />
+                                    <input type="number" name="3.2.2[]" placeholder="Nilai" class="form-control" min="0" max="4" required />
                                 </div>
                             </div>
                             <label>3.3.1.a &nbsp; Upaya pelacakan dan perekaman data kelulusan.</label>
                             <div class="form-group">
                                 <div class="radio">
-                                    <label>{{ Form::radio('3.3.1a', 4) }} Ada upaya yang intensif untuk melacak kelulusan dan datanya terekan secara komprehensif</label>
+                                    <label>{{ Form::radio('3.3.1a', 4, 0, ['required' => 'true']) }} Ada upaya yang intensif untuk melacak kelulusan dan datanya terekan secara komprehensif</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('3.3.1a', 3) }} Ada upaya yang intensif untuk melacak lulusan, tetapi hasilnya belum terekam secara komprehensif</label>
@@ -335,7 +335,7 @@
                             </ul></label>
                             <div class="form-group">
                                 <div class="radio">
-                                    <label>{{ Form::radio('3.3.1b', 4) }} Hasil pelacakan untuk perbaikan 4 item</label>
+                                    <label>{{ Form::radio('3.3.1b', 4, 0, ['required' => 'true']) }} Hasil pelacakan untuk perbaikan 4 item</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('3.3.1b', 3) }} Hasil pelacakan untuk perbaikan 3 item</label>
@@ -354,25 +354,25 @@
                             <div class="form-group row">
                                 <div class="col-md-3">
                                     <label>Tanggapan sangat baik</label>
-                                    <input type="nubmer" name="3.3.1ca" placeholder="Total persent(%)" class="form-control" />
+                                    <input type="nubmer" name="3.3.1ca" placeholder="Total persent(%)" class="form-control" min="1" max="100" step="0.01" required />
                                 </div>
                                 <div class="col-md-3">
                                     <label>Tanggapan baik</label>
-                                    <input type="number" name="3.3.1cb" placeholder="Total persent(%)" class="form-control" />
+                                    <input type="number" name="3.3.1cb" placeholder="Total persent(%)" class="form-control" min="1" max="100" step="0.01" required />
                                 </div>
                                 <div class="col-md-3">
                                     <label>Tanggapan cukup</label>
-                                    <input type="number" name="3.3.1cc" placeholder="Total persent(%)" class="form-control" />
+                                    <input type="number" name="3.3.1cc" placeholder="Total persent(%)" class="form-control" min="1" max="100" step="0.01" required />
                                 </div>
                                 <div class="col-md-3">
                                     <label>Tanggapan kurang</label>
-                                    <input type="number" name="3.3.1cd" placeholder="Total persent(%)" class="form-control" />
+                                    <input type="number" name="3.3.1cd" placeholder="Total persent(%)" class="form-control" min="1" max="100" step="0.01" required />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <label>3.3.2 &nbsp; Rata-rata waktu tunggu lulusan untuk memperoleh pekerjaan yang pertama =
-                                        <input type="number" name="3.3.2" style="width: 50px; display: unset;" class="form-control" />
+                                        <input type="number" name="3.3.2" style="width: 50px; display: unset;" class="form-control" min="1" max="999" required />
                                         bulan
                                     </label>
                                 </div>
@@ -380,7 +380,7 @@
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <label>3.3.3 &nbsp; Persentase lulusan yang bekerja pada bidang yang sesuai dengan keahliannya =
-                                        <input type="number" name="3.3.3" style="width: 50px; display: unset;" class="form-control" />
+                                        <input type="number" name="3.3.3" style="width: 50px; display: unset;" class="form-control" min="1" max="100" step="0.01" required />
                                         %
                                     </label>
                                 </div>
@@ -395,7 +395,7 @@
                             </ul></label>
                             <div class="form-group">
                                 <div class="radio">
-                                    <label>{{ Form::radio('3.4.1', 4) }} Semua bentuk partisipasi dilakukan oleh alumni</label>
+                                    <label>{{ Form::radio('3.4.1', 4, 0, ['required' => 'true']) }} Semua bentuk partisipasi dilakukan oleh alumni</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('3.4.1', 3) }} Hanya 3-4 bentuk partisipasi dilakukan oleh alumni</label>
@@ -420,7 +420,7 @@
                             </ul></label>
                             <div class="form-group">
                                 <div class="radio">
-                                    <label>{{ Form::radio('3.4.2', 4) }} Semua bentuk partisipasi dilakukan oleh alumni</label>
+                                    <label>{{ Form::radio('3.4.2', 4, 0, ['required' => 'true']) }} Semua bentuk partisipasi dilakukan oleh alumni</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('3.4.2', 3) }} Hanya 3-4 bentuk partisipasi dilakuan oleh alumni</label>
@@ -443,11 +443,15 @@
             </div>
         </div>
     </div>
-    @push('pageJs')
     <script type="text/javascript">
-        $(document).ready(function() {
-            console.log('ha ya ku');
-        });
+        var hasil = {!! json_encode($hasil) !!}
+        var value = {!! json_encode($value) !!}
+
+        if (hasil || value) {
+          localStorage.nilaiStandart3 = hasil;
+          localStorage.setItem('value3', JSON.stringify(value));
+        } else {
+          console.log('failed')
+        }
     </script>
-    @endpush
 @endsection

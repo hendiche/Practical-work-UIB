@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label>1.1.a &nbsp; Kejelasan dan kerealistikan visi, misi, tujuan, dan sasaran program studi.</label>
                         <div class="radio">
-                            <label>{{ Form::radio('1.1.a', 4) }}Memiliki visi, misi, tujuan dan sasaran yang sangat jelas dan sangat realistik</label>
+                            <label>{{ Form::radio('1.1.a', 4, 0, ['required' => 'true']) }}Memiliki visi, misi, tujuan dan sasaran yang sangat jelas dan sangat realistik</label>
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('1.1.a', 3) }}Memiliki visi, misi, tujuan dan sasaran jelas dan realistik</label>
@@ -32,7 +32,7 @@
                         <label>1.1.b &nbsp; Strategi pencapaian sasaran dengan rentang waktu yang jelas dan didukung oleh dokumen</label>
                         <div class="radio">
                             <label>
-                                {{ Form::radio('1.1.b', 4) }}
+                                {{ Form::radio('1.1.b', 4, 0, ['required' => 'true']) }}
                                 Strategi pencapaian sasaran:
                                 <ul>
                                     <li>dengan tahapan waktu yang jelas dan sangat teralistik</li>
@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label>1.2 &nbsp; Sosialisasi visi-misi. Sosialisasi yang efektif tercermin dari tingkat pemahaman seluruh pemangku kepentingan internal yaitu sivitas akademika (dosen dan mahasiswa) dan tenaga kependidikan</label>
                         <div class="radio">
-                            <label>{{ Form::radio('1.2', 4) }}Dipahami dengan baik oleh seluruh sivitas akademika dan tenaga kependidikan</label>
+                            <label>{{ Form::radio('1.2', 4, 0, ['required' => 'true']) }}Dipahami dengan baik oleh seluruh sivitas akademika dan tenaga kependidikan</label>
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('1.2', 3) }}Dipahami dengan baik oleh sebagian sivitas akademika dan tenaga kependidikan</label>
@@ -104,11 +104,12 @@
 </div>
 <script type="text/javascript">
     var hasil = {!! json_encode($hasil) !!}
+    var value = {!! json_encode($value) !!}
 
-    if (hasil) {
+    if (hasil || value) {
         console.log("in");
         localStorage.nilaiStandart1 = hasil;
-        $('#next').trigger('click');
+        localStorage.setItem('value1', JSON.stringify(value));
     } else {
         console.log('failde');
     }

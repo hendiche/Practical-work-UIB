@@ -86,6 +86,5 @@
     {{-- <script src="{{ asset('js/popper.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/bootstrap.min.js') }}"></script> --}}
     <script src="{{ asset('js/app.js') }}"></script>
-    @stack('pageJs')
 </body>
 </html>

@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label>2.1 &nbsp; Tata pomong menjamin terwujudnya visi, terlaksananya misi, tercapainya tujuan, berhasilnya strategi yang digunakan secara kredibel, transparan, akuntabel, bertanggung jawab dan adil.</label>
                         <div class="radio">
-                            <label>{{ Form::radio('2.1', 4) }}Program studi memiliki tatapamong yang memungkinkan terlaksananya secara konsisten prinsip tatapamong, dan menjamin penyelenggaraan program studi yang memenuhi 5 aspek berikut:
+                            <label>{{ Form::radio('2.1', 4, 0, ['required' => 'true']) }}Program studi memiliki tatapamong yang memungkinkan terlaksananya secara konsisten prinsip tatapamong, dan menjamin penyelenggaraan program studi yang memenuhi 5 aspek berikut:
                             <ul>
                                 <li>kredibel</li>
                                 <li>transparan</li>
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label>2.2 &nbsp; Karakteristik kepemimpinan yang efektif (kepemimpinan operasional, kepemimpinan organisasi, kepemimpinan publik)</label>
                         <div class="radio">
-                            <label>{{ Form::radio('2.2', 4) }}Kepemimpinan program studi memiliki karakteristik yang kuat dalam:
+                            <label>{{ Form::radio('2.2', 4, 0, ['required' => 'true']) }}Kepemimpinan program studi memiliki karakteristik yang kuat dalam:
                             <ul>
                                 <li>kepemimpinan operasional</li>
                                 <li>kepemimpinan organisasi</li>
@@ -100,7 +100,7 @@
                     <div class="form-group">
                         <label>2.3 &nbsp; Sistem pengelolaan funsional dan operasional program studi mencakup: <i>planning, organizing, staffing, leading, controlling</i> yang efektif dilaksanakan</label>
                         <div class="radio">
-                            <label>{{ Form::radio('2.3', 4) }}Sistem pengelolaan funsional dan operasional program studi berjalan sesuai dengan SOP, yang didukung dokumen yang lengkap</label>
+                            <label>{{ Form::radio('2.3', 4, 0, ['required' => 'true']) }}Sistem pengelolaan funsional dan operasional program studi berjalan sesuai dengan SOP, yang didukung dokumen yang lengkap</label>
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('2.3', 3) }}Sistem pengelolaan funsional dan operasional program studi dilakukan dengan cukup baik, sesuai dengan SOP, namun dokumen kurang lengkap</label>
@@ -118,7 +118,7 @@
                     <div class="form-group">
                         <label>2.4 &nbsp; Pelaksanaan penjamin mutu di program studi.</label>
                         <div class="radio">
-                            <label>{{ Form::radio('2.4', 4) }}Sistem penjamin mutu berjalan sesuai dengan standar penjamin mutu, ada umpan balik dan tindak lanjutnya, yang didukung dokumen yang lengkap</label>
+                            <label>{{ Form::radio('2.4', 4, 0, ['required' => 'true']) }}Sistem penjamin mutu berjalan sesuai dengan standar penjamin mutu, ada umpan balik dan tindak lanjutnya, yang didukung dokumen yang lengkap</label>
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('2.4', 3) }}Sistem penjamin mutu berjalan sesuai dengan standar penjaminan mutu, umpan balik tersedia tetapi tidak ada tindak lanjut.</label>
@@ -136,7 +136,7 @@
                     <div class="form-group">
                         <label>2.5 &nbsp; Penjaringan umpan balik dan tindak lanjutnya</label>
                         <div class="radio">
-                            <label>{{ Form::radio('2.5', 4) }}Umpan balik diperoleh dari dosen, mahasiswa, alumni dan pengguna serta ditindaklanjuti secara berkelanjutan</label>
+                            <label>{{ Form::radio('2.5', 4, 0, ['required' => 'true']) }}Umpan balik diperoleh dari dosen, mahasiswa, alumni dan pengguna serta ditindaklanjuti secara berkelanjutan</label>
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('2.5', 3) }}Umpan balik diperoleh dari dosen, mahasiswa, alumni dan pengguna serta ditindaklanjuti secara insidental.</label>
@@ -162,7 +162,7 @@
                         </ul>
                         </label>
                         <div class="radio">
-                            <label>{{ Form::radio('2.6', 4) }}Ada bukti semua usaha dilakukan berikut hasilnya</label>
+                            <label>{{ Form::radio('2.6', 4, 0, ['required' => 'true']) }}Ada bukti semua usaha dilakukan berikut hasilnya</label>
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('2.6', 3) }}Ada bukti sebagian usaha (>3) dilakukan</label>
@@ -187,10 +187,12 @@
 </div>
 <script type="text/javascript">
     var hasil = {!! json_encode($hasil) !!}
+    var value = {!! json_encode($value) !!}
     console.log(hasil);
-    if (hasil) {
+    if (hasil || value) {
         localStorage.nilaiStandart2 = hasil;
-        console.log("ada hasl");
+        localStorage.setItem('value2', JSON.stringify(value));
+        // var asd = JSON.parse(localStorage.getItem('value1'));
     } else {
         console.log('no data');
     }

@@ -24,27 +24,29 @@ class HomeController extends Controller
 
     public function toStandart1()
     {
-        return view('standart1')->with('hasil', "");
+        return view('standart1')->with('hasil', '')->with('value', '');
     }
 
     public function standart1(Request $request)
     {
+        $arrVal = $request->except(['_token']);
         $val11a = $request['1_1_a'] * 1.04;
         $val11b = $request['1_1_b'] * 1.04;
         $val12 = $request['1_2'] * 1.04;
 
         $total = $val11a + $val11b + $val12;
-        return view('standart1')->with('hasil', $total);
+        return view('standart1')->with('hasil', $total)->with('value', $arrVal);
         // return redirect('/standart2')->with('hasil', $total);
     }
 
     public function toStandart2()
     {
-        return view('standart2')->with('hasil', "");
+        return view('standart2')->with('hasil', "")->with('value', '');
     }
 
     public function standart2(Request $request)
     {
+        $arrVal = $request->except(['_token']);
         $val21 = $request['2_1'] * 1.39;
         $val22 = $request['2_2'] * 0.69;
         $val23 = $request['2_3'] * 1.39;
@@ -53,16 +55,17 @@ class HomeController extends Controller
         $val26 = $request['2_6'] * 0.69;
 
         $total = $val21 + $val22 + $val23 + $val24 + $val25 + $val26;
-        return view('standart2')->with('hasil', $total);
+        return view('standart2')->with('hasil', $total)->with('value', $arrVal);
     }
 
     public function toStandart3()
     {
-      return view('standart3')->with('hasil', '');
+      return view('standart3')->with('hasil', '')->with('value', '');
     }
 
     public function standart3(Request $request)
     {
+      $arrVal = [];
       $rasio = $request['3_1_1a3'] / $request['3_1_1a2'];
       if ($rasio >= 5) {
         $val311a = 4;
@@ -71,6 +74,7 @@ class HomeController extends Controller
       } elseif ($rasio <= 1) {
         $val311a = 2 * $rasio;
       }
+      $arrVal['3_1_1_a'] = $val311a;
       $val311a = $val311a * 1.95;
 
       $rasio = $request['3_1_1b5'] / $request['3_1_1b4'];
@@ -81,6 +85,7 @@ class HomeController extends Controller
       } elseif ($rasio <= 0.25) {
         $val311b = 0;
       }
+      $arrVal['3_1_1_b'] = $val311b;
       $val311b = $val311b * 0.65;
 
       $rasio = $request['3_1_1c6'] / $request['3_1_1c5'];
@@ -91,6 +96,7 @@ class HomeController extends Controller
       } elseif ($rasio >= 1.25) {
         $val311c = 0;
       }
+      $arrVal['3_1_1_c'] = $val311c;
       $val311c = $val311c * 0.65;
 
       $req311d = $request['3_1_1d'];
@@ -105,8 +111,11 @@ class HomeController extends Controller
       } elseif ($ipk <= 2.75 && $ipk >= 2) {
         $val311d = (4 * $ipk - 2) / 3;
       }
+      $arrVal['3_1_1_d'] = $val311d;
       $val311d = $val311d * 1.30;
 
+      $arrVal['3_1_2'] = $request['3_1_2'];
+      $arrVal['3_1_3'] = $request['3_1_3'];
       $val312 = $request['3_1_2'] * 0.65;
       $val313 = $request['3_1_3'] * 1.30;
 
@@ -118,6 +127,7 @@ class HomeController extends Controller
       } elseif ($rasio == 0) {
         $val314a = 0;
       }
+      $arrVal['3_1_4_a'] = $val314a;
       $val314a = $val314a * 1.30;
 
       $rasio = ($request['3_1_4ba'] - $request['3_1_4bb'] - $request['3_1_4bc']) / $request['3_1_4ba']; // $rasio = Mdo
@@ -128,8 +138,10 @@ class HomeController extends Controller
       } elseif  ($rasio >= 0.45) {
         $val314b = 0;
       }
+      $arrVal['3_1_4_b'] = $val314b;
       $val314b = $val314b * 0.65;
 
+      $arrVal['3_2_1'] = $request['3_2_1'];
       $val321 = $request['3_2_1'] * 0.65;
 
       $totalLayanan = 0;
@@ -137,16 +149,21 @@ class HomeController extends Controller
       foreach ($layanan as $item) {
         $totalLayanan += $item;
       }
-      $val322 = ($totalLayanan / 5) * 0.65;
+      $val322 = $totalLayanan / 5;
+      $arrVal['3_2_2'] = $val322;
+      $val322 = $val322 * 0.65;
 
+      $arrVal['3_3_1_a'] = $request['3_3_1a'];
+      $arrVal['3_3_1_b'] = $request['3_3_1b'];
       $val331a = $request['3_3_1a'] * 0.65;
       $val331b = $request['3_3_1b'] * 0.65;
 
       $val331c = 0;
-      $val331c += $request['3_3_1ca'] * 4;
-      $val331c += $request['3_3_1cb'] * 3;
-      $val331c += $request['3_3_1cc'] * 2;
-      $val331c += $request['3_3_1cd'];
+      $val331c += ($request['3_3_1ca'] / 100) * 4;
+      $val331c += ($request['3_3_1cb'] / 100) * 3;
+      $val331c += ($request['3_3_1cc'] / 100) * 2;
+      $val331c += ($request['3_3_1cd'] / 100);
+      $arrVal['3_3_1_c'] = $val331c / 7;
       $val331c = ($val331c / 7) * 1.30;
 
       $rasio = $request['3_3_2']; // $rasio == Rmt
@@ -157,21 +174,25 @@ class HomeController extends Controller
       } elseif ($rasio >= 18) {
         $val332 = 0;
       }
+      $arrVal['3_3_2'] = $val332;
       $val332 = $val332 * 1.30;
 
       $rasio = $request['3_3_3']; // $rasio == Pes
       if ($rasio >= 80) {
         $val333 = 4;
       } elseif ($rasio < 80) {
-        $val333 = 5 * $rasio;
+        $val333 = 5 * ($rasio / 100);
       }
+      $arrVal['3_3_3'] = $val333;
       $val333 = $val333 * 0.65;
 
+      $arrVal['3_4_1'] = $request['3_4_1'];
+      $arrVal['3_4_2'] = $request['3_4_2'];
       $val341 = $request['3_4_1'] * 0.65;
       $val342 = $request['3_4_2'] * 0.65;
 
-      $hasil = $val11a + $val311b + $val311c + $val311d + $val312 + $val313 + $val314a + $val314b + $val321 + $val322 + $val331a + $val331b + $val331c + $val332 + $val333 + $val341 + $val342;
-      return view('standart3')->with('hasil', $hasil);
+      $hasil = $val311a + $val311b + $val311c + $val311d + $val312 + $val313 + $val314a + $val314b + $val321 + $val322 + $val331a + $val331b + $val331c + $val332 + $val333 + $val341 + $val342;
+      return view('standart3')->with('hasil', $hasil)->with('value', $arrVal);
     }
 
     public function toStandart4()
