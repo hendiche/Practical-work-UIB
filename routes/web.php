@@ -34,4 +34,7 @@ Route::post('/standart4', 'HomeController@standart4')->name('post_standart4');
 Route::get('/standart5', 'HomeController@toStandart5')->name('standart5');
 Route::post('/standart5', 'HomeController@standart5')->name('post_standart5');
 
+Route::get('/standart6', 'HomeController@toStandart6')->name('standart6');
+Route::post('/standart6', 'HomeController@standart6')->name('post_standart6');
+
 Auth::routes();

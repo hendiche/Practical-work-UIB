@@ -209,4 +209,9 @@ class HomeController extends Controller
     {
       return view('standart5')->with('hasil', '');
     }
+
+    public function toStandart6()
+    {
+      return view('standart6')->with('hasil', '');
+    }
 }
