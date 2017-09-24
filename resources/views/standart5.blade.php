@@ -421,7 +421,7 @@
                                     <label>{{ Form::radio('5.7.5', 0) }} Tidak ada nilai</label>
                                 </div>
                             </div>
-                            {{-- {{ Form::submit('NEXT TO STANDART 5', ['class' => 'btn btn-block btn-success']) }} --}}
+                            {{ Form::submit('NEXT TO STANDART 5', ['class' => 'btn btn-block btn-success']) }}
                             <a href="{{ route('standart6') }}" id="next"> > </a>
                         {{ Form::close() }}
                     </div>
@@ -429,4 +429,14 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        var hasil = {!! json_encode($hasil) !!}
+        var value = {!! json_encode($value) !!}
+
+        if (hasil || value) {
+            localStorage.nilaiStandart5 = hasil;
+            localStorage.setItem('value5', JSON.stringify(value));
+        }
+    </script>
 @endsection
