@@ -118,11 +118,64 @@
                                 <h5><small><i>NOTE: PS = Program studi</i></small></h5>
                             </div>
                             <div class="form-group">
-                                <label>4.3.2 &nbsp; (<i>tidak bisa di kerjakan</i>)</label>
+                                <label>4.3.2 &nbsp; Rasio mahasiswa terhadap dosen tetap yang bidang keahliannya sesuai dengan bidang Program Studi pada bidang:
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>{{ Form::radio('4.3.2', 'social', 0, ['required' => 'true']) }} Social</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>{{ Form::radio('4.3.2', 'eksakta') }} Eksakta</label>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label>Jumlah total mahasiswa reguler (bukan transfer)</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="number" name="4.3.2mhs[]" placeholder="Input Jumlah" class="form-control" min="1" max="99999" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label>Jumlah total mahasiswa reguler (transfer)</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="number" name="4.3.2mhs[]" placeholder="Input Jumlah" class="form-control" min="1" max="99999" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label>Jumlah total mahasiswa non-reguler (bukan transfer)</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="number" name="4.3.2mhs[]" placeholder="Input Jumlah" class="form-control" min="1" max="99999" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <div class="col-md-6">
+                                                <label>Jumlah total mahasiswa non-reguler (transfer)</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="number" name="4.3.2mhs[]" placeholder="Input Jumlah" class="form-control" min="1" max="99999" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>4.3.3 &nbsp; Rata-rata beban dosen per semester, atau rata-rata FTE (<i>Fulltime Teaching Equivalent</i>)
-                                    <input type="number" name="4.3.3" class="form-control s4-inputBox input-FTE" placeholder="Rata-rata sks" min="1" max="999" step="0.01" required />
+                                    <input type="number" name="4.3.3" class="form-control s4-inputBox input-FTE" placeholder="Rata-rata sks" min="1" max="999" required />
                                     sks
                                 </label>
                             </div>
@@ -139,9 +192,6 @@
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('4.3.4', 1) }} Lebih dari 7 mata kuliah diajar oleh dosen yang tidak sesuai keahliannya</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('4.3.4', 0) }} Tidak ada penilaian</label>
                                 </div>
                             </div>
                             <label>4.3.5 &nbsp; Tingkat kehadiran dosen tetap dalam mengajar</label>
@@ -183,10 +233,10 @@
                             </div>
                             <label>4.4.2.b &nbsp; Tingkat kehadiran dosen tidak tetap dalam mengajar</label>
                             <div class="form-group">
-                                <p>Jumlah semua pertemuan mata kuliah yang direncanakan
+                                <p>Jumlah semua pertemuan mata kuliah yang direncanakan(dosen tidak tetap)
                                     <input type="number" name="4.4.2bren" class="form-control s4-inputBox input-pertemuan-dosen" placeholder="Jumlah Rencana" min="1" max="9999" required />
                                 </p>
-                                <p>Jumlah semua pertemuan mata kuliah yang terlaksanakan
+                                <p>Jumlah semua pertemuan mata kuliah yang terlaksanakan(dosen tidak tetap)
                                     <input type="number" name="4.4.4blak" class="form-control s4-inputBox input-pertemuan-dosen" placeholder="Jumlah terlaksana" min="1" max="9999" required />
                                 </p>
                                 <small><i>Semua dosen tidak tetap yang sesuai bidang keahliannya maupun di luar bidang keahliannya</i></small>
@@ -200,10 +250,10 @@
                             </div>
                             <label>4.5.2 &nbsp; Peningkatan kemampuan dosen tetap melalui program tugas belajar dalam bidang yang sesuai dengan bidang PS</label>
                             <div class="form-group">
-                                <p>Jumlah dosen yang mengikuti tugas belajar jengjang S2 pada bidang keahlian yang sesuai dengan PS dalam kurun waktu tiga tahun terakhir
+                                <p>Jumlah dosen yang mengikuti tugas belajar jenjang S2 pada bidang keahlian yang sesuai dengan PS dalam kurun waktu tiga tahun terakhir
                                     <input type="number" name="4.5.2s2" class="form-control s4-inputBox s4-jumlah" placeholder="Jumlah" min="1" max="9999" required /> orang
                                 </p>
-                                <p>Jumlah dosen yang mengikuti tugas belajar jenajng S3 pada bidang keahlian yang sesuai dengan PS dalam kurun waktu tiga tahun terakhir
+                                <p>Jumlah dosen yang mengikuti tugas belajar jenjang S3 pada bidang keahlian yang sesuai dengan PS dalam kurun waktu tiga tahun terakhir
                                     <input type="number" name="4.5.2s3" class="form-control s4-inputBox s4-jumlah" placeholder="Jumlah" min="1" max="9999" required /> orang
                                 </p>
                             </div>
@@ -279,9 +329,6 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('4.6.2b', 1) }} Kurang dalam jumlah atau terlalu banyak sehingga kurang kegiatannya</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('4.6.2b', 0) }} Tidak ada penilaian</label>
-                                </div>
                             </div>
                             <label>4.6.1.c &nbsp; Jumlah tenaga administrasi</label>
                             <div class="form-group">
@@ -317,16 +364,32 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('4.6.2', 1) }} Tidak ada upaya pengembangan, padahal kualifikasi dan kompetensi tenaga kependidikan relatif masih kurang</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('4.6.2', 0) }} Tidak ada penilaian</label>
-                                </div>
                             </div>
-                            {{-- {{ Form::submit('NEXT TO STANDART 5', ['class' => 'btn btn-block btn-success']) }} --}}
-                            <a href="{{ route('standart5') }}" id="next"> > </a>
+                            {{ Form::submit('NEXT TO STANDART 5', ['class' => 'btn btn-block btn-success', 'id' => 'btn_submit']) }}
+                            {{-- <a href="{{ route('standart5') }}" id="next"> > </a> --}}
                         {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        var hasil = {!! json_encode($hasil) !!}
+        var value = {!! json_encode($value) !!}
+
+        if (hasil || value) {
+            localStorage.nilaiStandart4 = hasil;
+            localStorage.setItem('value4', JSON.stringify(value));
+            window.location.href = '{{ route("standart5") }}';
+        } else {
+
+        }
+
+        var dataS3 = JSON.parse(localStorage.getItem('value3'));
+        if (!dataS3) {
+            // $('#btn_submit').hide();
+            // alert('Standart 3 perlu di isi terlebih dahulu!!');
+            // window.location.href = '{{ route("standart3") }}';
+        }
+    </script>
 @endsection

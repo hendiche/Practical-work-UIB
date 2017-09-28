@@ -23,9 +23,6 @@
                         <div class="radio">
                             <label>{{ Form::radio('1.1.a', 1) }}Memiliki visi, misi, tujuan, dan sasaran yang kurang jelas dan tidak realistik</label>
                         </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('1.1.a', 0) }}Tidak ada</label>
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -70,9 +67,6 @@
                                 </ul>
                             </label>
                         </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('1.1.b', 0) }}Tidak ada</label>
-                        </div>
                     </div>
                     <div class="form-group">
                         <label>1.2 &nbsp; Sosialisasi visi-misi. Sosialisasi yang efektif tercermin dari tingkat pemahaman seluruh pemangku kepentingan internal yaitu sivitas akademika (dosen dan mahasiswa) dan tenaga kependidikan</label>
@@ -88,15 +82,12 @@
                         <div class="radio">
                             <label>{{ Form::radio('1.2', 1) }}Tidak dipahami oleh seluruh sivitas akademika dan tenaga kependidikan</label>
                         </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('1.2', 0) }}Tidak ada</label>
-                        </div>
                     </div>
 
                     {{ Form::submit('NEXT TO STANDART 2', ['class' => 'btn btn-block btn-success']) }}
 
                     {!! Form::close() !!}
-                    <a href="{{ route('standart2') }}" id="next">></a>
+                    {{-- <a href="{{ route('standart2') }}" id="next">></a> --}}
                 </div>
             </div>
         </div>
@@ -105,13 +96,14 @@
 <script type="text/javascript">
     var hasil = {!! json_encode($hasil) !!}
     var value = {!! json_encode($value) !!}
+    
 
     if (hasil || value) {
-        console.log("in");
         localStorage.nilaiStandart1 = hasil;
         localStorage.setItem('value1', JSON.stringify(value));
+        window.location.href = '{{ route("standart2") }}';
     } else {
-        console.log('failde');
+        
     }
 </script>
 @endsection

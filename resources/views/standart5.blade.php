@@ -95,11 +95,11 @@
                             </div>
                             <div class="form-group">
                                 <label>5.1.3 &nbsp; Fleksibilitas mata kuliah pilihan (Matakuliah yang dilaksanakan tiga tahun terakhir)</label>
-                                <p>Jumlah matakuliah
+                                <p>Jumlah matakuliah pilihan yang disediakan
                                     <input type="number" name="5.1.3" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required /> sks
                                 </p>
-                                <p>Jumlah matakuliah yang harus diambil
-                                    <input type="number" name="5.1.2get" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required /> sks
+                                <p>Jumlah matakuliah pilihan yang harus diambil
+                                    <input type="number" name="5.1.3get" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required /> sks
                                 </p>
                                 <small><i>Note: Bagi Program Studi yang memiliki jalur pilihan/peminatan/konsentrasi dianggap sebagai mata kuliah pilihan</i></small><br/>
                             </div>
@@ -116,9 +116,6 @@
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.1.4', 1) }} Pelaksanaan modul praktikum kurang dari minimum</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('5.1.4', 0) }} Tidak ada nilai</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -151,14 +148,42 @@
                                     <label>{{ Form::radio('5.2b', 2) }} Pembaharuan hanya menata ulang kurukulum yang sudah ada, tanpa disesuaikan dengan perkembangan</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('5.2b', 1) }} -</label>
-                                </div>
-                                <div class="radio">
                                     <label>{{ Form::radio('5.2b', 0) }} Tidak ada pembaharuan kurikulum selama 5 tahun terakhir</label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>5.3.1.a &nbsp; (<i>tidak bisa di kerjakan</i>)</label>
+                                <label>5.3.1.a &nbsp; Pelaksanaan pemelajaran memiliki mekanisme untuk memonitor, mengkaji, dan memperbaiki setiap semester dengan memberikan skor jika:
+                                    <ul>
+                                        <li>1: Tidak ada monitoring</li>
+                                        <li>2: Ada monitoring tetapi tidak ada evaluasi</li>
+                                        <li>3: Ada monitoring, evaluasi tidak kontinu</li>
+                                        <li>4: Ada monitoring dan evaluasi secara kontinu</li>
+                                    </ul>
+                                </label>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label>Kehadiran mahasiswa</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" name="5.3.1a[]" placeholder="Nilai" class="form-control" min="1" max="4" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label>Kehadiran dosen</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" name="5.3.1a[]" placeholder="Nilai" class="form-control" min="1" max="4" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label>Materi kuliah</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" name="5.3.1a[]" placeholder="Nilai" class="form-control" min="1" max="4" required />
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>5.3.1.b &nbsp; Mekanisme penyusunan materi perkuliahan</label>
@@ -179,7 +204,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>5.3.3 &nbsp; Mutu soal ujian</label>
+                                <label>5.3.2 &nbsp; Mutu soal ujian</label>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.3.2', 4, 0, ['required' => 'true']) }} Mutu soal ujian semuanya bermutu baik, dan sesuai dengan GBPP/SAP</label>
                                 </div>
@@ -256,21 +281,18 @@
                                     <label>{{ Form::radio('5.5.1a', 2) }} Ada panduan tertulis tetapi tidak disosialisasikan dengan baik, serta tidak dilaksanakan secara konsisten</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('5.5.1a', 1) }}  </label>
-                                </div>
-                                <div class="radio">
                                     <label>{{ Form::radio('5.5.1a', 0) }} Tidak ada panduan tertulis</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>5.5.1.b &nbsp; Rata-rata banyaknya mahasiswa per dosen pembimbing tugas akhir (TA)
-                                    <input type="number" name="5.5.1b" class="form-control s5-inputBox w-50"  min="1" max="9999" step="0.01" required />
+                                    <input type="number" name="5.5.1b" class="form-control s5-inputBox w-50"  min="0" max="9999" step="0.01" required />
                                     mahasiswa/dosen TA.
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label>5.5.1.c &nbsp; Rata-rata jumlah pertemuan dosen-mahasiswa untuk menyelesaikan tugas akhir:
-                                    <input type="number" name="5.5.1c" class="form-control s5-inputBox w-50"  min="1" max="9999" step="0.01" required />
+                                    <input type="number" name="5.5.1c" class="form-control s5-inputBox w-50"  min="0" max="9999" step="0.01" required />
                                     kali mulai dari saat mengambil TA hingga menyelesaikan TA
                                 </label>
                             </div>
@@ -287,9 +309,6 @@
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.5.1d', 1) }} Sebagian besar dosen pembimbing <i>belum</i> berpendidikan minimal S2 dan tidak sesuai dengan bidang keahliannya</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('5.5.1d', 0) }} Tidak ada nilai</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -339,9 +358,6 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('5.7.1', 1) }} Tidak ada kebijakan tertulis tentang otonomi keilmuan, kebebasan akademik, kebebasan mimbar akademik, dan kemitraan dosen-mahasiswa</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::Radio('5.7.1', 0) }} Tidak ada nilai</label>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>5.7.2 &nbsp; Ketersediaan dan kelengkapan jenis prasarana, sarana serta dana yang memungkinkan terciptanya interaksi akademik antara sivitas akademika</label>
@@ -356,9 +372,6 @@
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.7.2', 1) }} Prasarana utama masih kurang, demikian pula dengan dukungan dana</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('5.7.2', 0) }} Tidak ada nilai</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -375,9 +388,6 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('5.7.3', 1) }} Kegiatan ilmiah yang terjadwal dilaksanakan lebih dari enam bulan sekali</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('5.7.3', 0) }} Tidak ada nilai</label>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>5.7.4 &nbsp; Interaksi akademik antara dosen-mahasiswa.</label>
@@ -392,10 +402,7 @@
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.7.4', 1) }} Upaya dinilai kurang dan hasilnya tidak nampak, atau tidak ada upaya</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('5.7.4', 0) }} Tidak ada nilai</label>
-                                </div>
+                                </div
                             </div>
                             <div class="form-group">
                                 <label>5.7.5 &nbsp; Pengembangan perilaku kecendekiawanan dalam bentuk kegiatan antara lain dapat berupa:
@@ -417,12 +424,9 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('5.7.5', 1) }} Kegiatan yang dilakukan tidak menunjang pengembangan perilaku kecendekiawanan</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('5.7.5', 0) }} Tidak ada nilai</label>
-                                </div>
                             </div>
                             {{ Form::submit('NEXT TO STANDART 5', ['class' => 'btn btn-block btn-success']) }}
-                            <a href="{{ route('standart6') }}" id="next"> > </a>
+                            {{-- <a href="{{ route('standart6') }}" id="next"> > </a> --}}
                         {{ Form::close() }}
                     </div>
                 </div>
@@ -434,9 +438,11 @@
         var hasil = {!! json_encode($hasil) !!}
         var value = {!! json_encode($value) !!}
 
+        alert('point 5.1.3 belum slesai');
         if (hasil || value) {
             localStorage.nilaiStandart5 = hasil;
             localStorage.setItem('value5', JSON.stringify(value));
+            window.location.href = '{{ route("standart6") }}';
         }
     </script>
 @endsection

@@ -50,9 +50,6 @@
                                 <li>adil</li>
                             </ul></label>
                         </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('2.1', 0) }}Tidak ada</label>
-                        </div>
                     </div>
 
                     <div class="form-group">
@@ -93,9 +90,6 @@
                             </ul>
                             </label>
                         </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('2.2', 0) }}Tidak ada</label>
-                        </div>
                     </div>
                     <div class="form-group">
                         <label>2.3 &nbsp; Sistem pengelolaan funsional dan operasional program studi mencakup: <i>planning, organizing, staffing, leading, controlling</i> yang efektif dilaksanakan</label>
@@ -110,9 +104,6 @@
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('2.3', 1) }}Sistem pengelolaan funsional dan operasional program studi dilakukan tidak sesuai dengan SOP</label>
-                        </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('2.3', 0) }}Tidak ada</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -129,9 +120,6 @@
                         <div class="radio">
                             <label>{{ Form::radio('2.4', 1) }}Ada sistem penjamin mutu, tetapi tidak berfungsi</label>
                         </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('2.4', 0) }}Tiak ada</label>
-                        </div>
                     </div>
                     <div class="form-group">
                         <label>2.5 &nbsp; Penjaringan umpan balik dan tindak lanjutnya</label>
@@ -146,9 +134,6 @@
                         </div>
                         <div class="radio">
                             <label>{{ Form::radio('2.5', 1) }}Umpan balik hanya diperoleh dari sebagian dan tidak ada tindak lanjut</label>
-                        </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('2.5', 0) }}Tidak Ada</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -173,9 +158,6 @@
                         <div class="radio">
                             <label>{{ Form::radio('2.6', 1) }}Ada bukti hanya 1 usaha yang dilakukan</label>
                         </div>
-                        <div class="radio">
-                            <label>{{ Form::radio('2.6', 0) }}Tidak ada</label>
-                        </div>
                     </div>
                     {{ Form::submit('NEXT TO STANDART 3', ['class' => 'btn btn-block btn-success']) }}
                     <a href="{{ route('standart3') }}" id="next">></a>
@@ -188,13 +170,13 @@
 <script type="text/javascript">
     var hasil = {!! json_encode($hasil) !!}
     var value = {!! json_encode($value) !!}
-    console.log(hasil);
+
     if (hasil || value) {
         localStorage.nilaiStandart2 = hasil;
         localStorage.setItem('value2', JSON.stringify(value));
-        // var asd = JSON.parse(localStorage.getItem('value1'));
+        window.location.href = '{{ route("standart3") }}';
     } else {
-        console.log('no data');
+        
     }
 </script>
 @endsection

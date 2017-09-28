@@ -58,7 +58,7 @@
                                             <label>Jumlah Mahasiswa Baru yang Reguler(Bukan Transfer)</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1b5" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
+                                            <input type="number" name="3.1.1b5" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required oninput="fill()" id="get_jml_mhs" />
                                         </div>
                                     </div>
                                 </div>
@@ -75,16 +75,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <input type="hidden" name="3.1.1c5" placeholder="Input Jumlah" class="form-control" min="1" max="9999" readonly id="set_jml_mhs" />
+                                {{-- <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-6">
                                             <label>Jumlah Mahasiswa Baru yang bukan Transfer</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="number" name="3.1.1c5" placeholder="Input Jumlah" class="form-control" min="1" max="9999" required />
+                                            
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <label>3.1.1.d &nbsp; Rata-rata Indeks Prestasi Kumulatif (IPK) selama lima tahun terakhir</label>
                             <div class="row">
@@ -173,9 +174,6 @@
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('3.1.3', 1) }}Tidak ada bukti penghargaan</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('3.1.3', 0) }}Tidak ada</label>
                                 </div>
                             </div>
                             <label>3.1.4.a &nbsp; Persentase kelulusan tepat waktu.</label>
@@ -436,7 +434,7 @@
                                 </div>
                             </div>
                             {{ Form::submit('NEXT TO STANDART 4', ['class' => 'btn btn-block btn-success']) }}
-                            <a href="{{ route('standart4') }}" id="next"> > </a>
+                            {{-- <a href="{{ route('standart4') }}" id="next"> > </a> --}}
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -450,8 +448,14 @@
         if (hasil || value) {
           localStorage.nilaiStandart3 = hasil;
           localStorage.setItem('value3', JSON.stringify(value));
+          window.location.href = '{{ route("standart4") }}';
         } else {
-          console.log('failed')
+
+        }
+
+        function fill() {
+            var value = document.getElementById('get_jml_mhs').value;
+            document.getElementById('set_jml_mhs').value = value;
         }
     </script>
 @endsection

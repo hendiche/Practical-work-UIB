@@ -197,22 +197,220 @@ class HomeController extends Controller
 
     public function toStandart4()
     {
-      return view('standart4')->with('hasil', '');
+      return view('standart4')->with('hasil', '')->with('value', '');
     }
 
-    public function standart4()
+    public function standart4(Request $request)
     {
-      // liat soal point 4.5.2 ada yang di reuse , data 4.3.1 reuse ke 4.5.2
+      $arrVal = [];
+      $arrVal['4_1'] = $request['4_1'];
+      $val41 = $request['4_1'] * 0.72;
+
+      $arrVal['4_2_1'] = $request['4_2_1'];
+      $val421 = $request['4_2_1'] * 0.72;
+
+      $arrVal['4_2_2'] = $request['4_2_2'];
+      $val422 = $request['4_2_2'] * 1.43;
+
+      $totalDosen = $request['4_3_1'];
+      $kd = $request['4_3_1a'] / $totalDosen;
+      $kd1 = $kd; // used for point 4.5.2
+      if ($kd >= 0.9) {
+        $val431a = 4;
+      } elseif ($kd > 0.3) {
+        $val431a = (20 * $kd / 3) - 2;
+      } else if ($kd <= 0.3) {
+        $val431a = 0;
+      }
+      $arrVal['4_3_1a'] = $val431a;
+      $val431a = $val431a * 1.43;
+
+      $kd = $request['4_3_1b'] / $totalDosen;
+      $kd2 = $kd; // used for point 4.5.2
+      if ($kd >= 0.4) {
+        $val431b = 4;
+      } elseif ($kd < 0.4) {
+        $val431b = 2 + 5 * $kd;
+      }
+      $arrVal['4_3_1b'] = $val431b;
+      $val431b = $val431b * 2.15;
+
+      $kd = $request['4_3_1c'] / $totalDosen;
+      if ($kd >= 0.4) {
+        $val431c = 4;
+      } elseif ($kd < 0.4) {
+        $val431c = 1 + 7.5 * $kd;
+      }
+      $arrVal['4_3_1c'] = $val431c;
+      $val431c = $val431c * 1.43;
+
+      $kd = $request['4_3_1d'] / $totalDosen;
+      if ($kd >= 0.4) {
+        $val431d = 4;
+      } elseif ($kd < 0.4) {
+        $val431d = 1 + 1.5 * $kd;
+      }
+      $arrVal['4_3_1d'] = $val431d;
+      $val431d = $val431d * 0.72;
+
+      $opsi = $request['4_3_2'];
+      $req432 = $request['4_3_2mhs'];
+      $kd = 0;
+      foreach ($req432 as $item) {
+        $kd += $item;
+      }
+      $kd = $kd / $totalDosen; // $kd == Rmd
+      if ($opsi == 'social') {
+        if ($kd >= 27 && $kd <= 33) {
+          $val432 = 4;
+        } else if ($kd < 70 && $kd > 33) {
+          $val432 = 4 * (70 - $kd) / 37;
+        } else if ($kd > 5 && $kd < 27) {
+          $val432 = 2 * ($kd - 5) / 11;
+        } else if ($kd >= 70 || $kd <= 5) {
+          $val432 = 0;
+        }
+      } elseif ($opsi == 'eksakta') {
+        if ($kd >= 17 && $kd <= 23) {
+          $val432 = 4;
+        } elseif ($kd < 60 && $kd > 23) {
+          $val432 = 4 * (60 - $kd) / 37;
+        } elseif ($kd < 17 && $kd >= 0) {
+          $val432 = 4 * $kd / 17;
+        } elseif ($kd >= 60 || $kd < 0) {
+          $val432 = 0;
+        }
+      }
+      $arrVal['4_3_2'] = $val432;
+      $val432 = $val432 * 0.72;
+
+      $kd = $request['4_3_3']; // $kd == Rfte
+      if ($kd >= 11 && $kd <= 13) {
+        $val433 = 4;
+      } elseif ($kd > 5 && $kd < 11) {
+        $val433 = ($kd - 3) / 2;
+      } elseif ($kd > 13 && $kd < 21) {
+        $val433 = (71 - (3 * $kd)) / 8;
+      } elseif ($kd <= 5 || $kd >= 21) {
+        $val433 = 1;
+      }
+      $arrVal['4_3_3'] = $val433;
+      $val433 = $val433 * 0.72;
+
+      $arrVal['4_3_4'] = $request['4_3_4'];
+      $val434 = $request['4_3_4'] * 0.72;
+
+      $kd = $request['4_3_5lak'] / $request['4_3_5ren']; // $kd == PKot
+      if ($kd >= 0.95) {
+        $val435 = 4;
+      } elseif ($kd > 0.6) {
+        $val435 = ((80 * $kd) - 48) / 7;
+      } elseif ($kd<= 0.6) {
+        $val435 = 0;
+      }
+      $arrVal['4_3_5'] = $val435;
+      $val435 = $val435 * 0.72;
+
+      $kd = $request['4_4_1tdk'] / $request['4_4_1tot']; // $kd == Pdtt
+      if ($kd <= 0.1) {
+        $val441 = 4;
+      } elseif ($kd < 0.5) {
+        $val441 = 10 * (0.5 - $kd);
+      } elseif ($kd >= 0.5) {
+        $val441 = 0;
+      }
+      $arrVal['4_4_1'] = $val441;
+      $val441 = $val441 * 0.72;
+
+      $arrVal['4_4_2a'] = $request['4_4_2a'];
+      $val442a = $request['4_4_2a']* 0.72;
+
+      $kd = $request['4_4_2blak'] / $request['4_4_2bren']; // $kd == PKdtt
+      if ($kd >= 0.95) {
+        $val442b = 4;
+      } elseif ($kd > 0.6) {
+        $val442b = (80 * ($kd - 48)) / 7;
+      } elseif ($kd <= 0.6) {
+        $val442b = 0;
+      }
+      $arrVal['4_4_2b'] = $val442b;
+      $val442b = $val442b * 0.72;
+
+      $kd = $request['4_5_1']; // $kd == Jtap
+      if ($kd >= 12) {
+        $val451 = 4;
+      } elseif ($kd < 12) {
+        $val451 = 1 + ($kd / 4);
+      }
+      $arrVal['4_5_1'] = $val451;
+      $val451 = $val451 * 0.72;
+      
+      if ($kd1 > 0.9 || $kd2 > 0.4) {
+        $val452 = 4;
+      } else {
+        $kd = ($request['4_5_2s2'] * 0.75) + ($request['4_5_2s3'] * 1.25); // $kd == SD
+        if ($kd >= 4) {
+          $val452 = 4;
+        } elseif ($kd >= 0) {
+          $val452 = $kd;
+        }
+      }
+      $arrVal['4_5_2'] = $val452;
+      $val452 = $val452 * 0.72;
+
+      $kd = ($request['4_5_3a'] + ($request['4_5_3b'] / 4)) / $totalDosen; // $kd == SP
+      if ($kd >= 3) {
+        $val453 = 4;
+      } elseif ($kd > 0) {
+        $val453 = 1 + $kd;
+      } elseif ($kd == 0) {
+        $val453 = 0;
+      }
+      $arrVal['4_5_3'] = $val453;
+      $val453 = $val453 * 1.43;
+
+      $arrVal['4_5_4'] = $request['4_5_4'];
+      $val454 = $request['4_5_4'] * 1.43;
+
+      $arrVal['4_5_5'] = $request['4_5_5'];
+      $val455 = $request['4_5_5'] * 1.08;
+
+      $kd = ((4 * $request['4_6_1ax1']) + (3 * $request['4_6_ax2']) + (2 * $request['4_6_ax3'])) / 4; //$kd == A
+      if ($kd >= 4) {
+        $val461a = 4;
+      } elseif ($kd < 4) {
+        $val461a = $kd;
+      }
+      $arrVal['4_6_1a'] = $val461a;
+      $val461a = $val461a * 0.72;
+
+      $arrVal['4_6_2b'] = $request['4_6_2b'];
+      $val461b = $request['4_6_2b'] * 0.72;
+
+      $kd = ((4 * $request['4_6_1cx1']) + (3 * $request['4_6_1cx2']) + (2 * $request['4_6_1cx3']) + $request['4_6_1cx4']) / 4; //$kd == D
+      if ($kd >= 4) {
+        $val461c = 4;
+      } elseif ($kd < 4) {
+        $val461c = $kd;
+      }
+      $arrVal['4_6_1c'] = $val461c;
+      $val461c = $val461c * 0.72;
+
+      $arrVal['4_6_2'] = $request['4_6_2'];
+      $val462 = $request['4_6_2'] * 0.72;
+
+      $hasil = $val41 + $val421 + $val422 + $val431a + $val431b + $val431c + $val431d + $val432 + $val433 + $val434 + $val435 + $val441 + $val442a + $val442b + $val451 + $val452 + $val453 + $val454 + $val455 + $val461a + $val461b + $val461c + $val462;
+      return view('standart4')->with('hasil', $hasil)->with('value', $arrVal);
     }
 
     public function toStandart5()
     {
-      return view('standart5')->with('hasil', '');
+      return view('standart5')->with('hasil', '')->with('value', '');
     }
 
     public function standart5(Request $request)
     {
-
+      $arrVal = [];
       $arrVal['5_1_1a'] = $request['5_1_1a'];
       $val511a = $request['5_1_1a'] * 0.57;
 
@@ -231,53 +429,71 @@ class HomeController extends Controller
       $arrVal['5_1_2b'] = $val512b;
       $val512b = $val512b * 0.57;
 
-      $skor = $request['5_1_2c'];
+      $skor = $request['5_1_2c'] / $request['5_1_2b']; // $skor == Pdmk
       if ($skor >= 0.95){
         $val512c = 4;
       } elseif ($skor > 0.55){
         $val512c = 10 * ($skor - 0.55);
-      } elseif ($skor < 0.55){
+      } elseif ($skor <= 0.55){
         $val512c = 0;
       }
-      $arrVal['5_1_2c'] = $request['5_1_2c'];
+      $arrVal['5_1_2c'] = $val512c;
       $val512c = $val512c * 0.57;
 
       /* 5.1.3 */
+      // $Bmkp = $request['5_1_3'];
+      // $Rmkp = $request['5_1_3get'];
+
+      // if ($Bmkp >= 9 && ($Bmkp >= ($Rmkp * 2))) {
+      //   $val513 = 4;
+      // } elseif ($Bmkp >= 9 && ()) {
+
+      // }
       
       $arrVal['5_1_4'] = $request['5_1_4'];
       $val514 = $request['5_1_4'] * 1.14;
 
       $arrVal['5_2a'] = $request['5_2a'];
-      $val52a = $request['5_2a'];
+      $val52a = $request['5_2a'] * 0.57;
 
       $arrVal['5_2b'] = $request['5_2b'];
       $val52b = $request['5_2b'] * 0.57;
 
-      /* 5.3.1a dan 5.3.1b */
+      $req531a = $request['5_3_1a'];
+      $val531a = 0;
+      foreach ($req531a as $item) {
+        $val531a += $item;
+      }
+      $val531a = $val531a / 3;
+      $arrVal['5_3_1a'] = $val531a;
+      $val531a = $val531a * 1.14;
+
+      $arrVal['5_3_1b'] = $request['5_3_1b'];
+      $val531b = $request['5_3_1b'] * 0.57;
 
       $arrVal['5_3_2'] = $request['5_3_2'];
       $val532 = $request['5_3_2'] * 0.57;
       
-      /* 5.4.1a */
+      $skor = $request['5_4_1a']; //$skor == Rmpa
       if ($skor <= 20){
         $val541a = 4;
-      } elseif ($skor > 60 ){
+      } elseif ($skor < 60 ){
         $val541a = (60 - $skor) / 10;
       } elseif ($skor >= 60 ) { //atau tidak ada perwakilan 
         $val541a = 0; 
       } 
-      $arrVal['5_4_1a'] = $request['5_4_1a'];
+      $arrVal['5_4_1a'] = $val541a;
       $val541a = $val541a * 0.57;
 
       $arrVal['5_4_1b'] = $request['5_4_1b'];
       $val541b = $request['5_4_1b'] * 0.57;
 
-      $skor = $request['5_4_1c'];
-      if ($skor >= 3){
+      $skor = $request['5_4_1c']; //$skor == PP
+      if ($skor >= 3) {
         $val541c = 4;
-      } elseif ($skor > 0){
+      } elseif ($skor > 0) {
         $val541c = $skor + 1;
-      } elseif ($skor == 0){
+      } elseif ($skor == 0) {
         $val541c = 0;
       }
       $arrVal['5_4_1c'] = $request['5_4_1c'];
@@ -286,33 +502,53 @@ class HomeController extends Controller
       $arrVal['5_4_2'] = $request['5_4_2'];
       $val542 = $request['5_4_2'] * 0.57;
 
-      /* 5.5.1a*/
+      $arrVal['5_5_1a'] = $request['5_5_1a'];
+      $val551a = $request['5_5_1a'] * 0.57;
 
       $skor = $request['5_5_1b'];
-      if ($skor > 0 && $skor < 4){
+      if ($skor > 0 && $skor <= 4) {
         $val551b = 4;
-      } elseif ($skor > 20){
+      } elseif ($skor < 20) {
         $val551b = 5 - ($skor / 4);
-      } elseif ($skor == 0 || $skor >= 20){
+      } elseif ($skor == 0 || $skor >= 20) {
         $val551b = 0;
       }
       $arrVal['5_5_1b'] = $request['5_5_1b'];
       $val551b = $val551b * 0.57;
 
       $skor = $request['5_5_1c'];
-      if ($skor >= 8){
+      if ($skor >= 8) {
         $val551c = 4;
-      } elseif ($skor < 8){
+      } elseif ($skor < 8) {
         $val551c = $skor / 12;
       }
-      $arrVal['5_5_1c'] = $request['5_5_1c'];
+      $arrVal['5_5_1c'] = $val551c;
       $val551c = $val551c * 0.57;
 
       $arrVal['5_5_1d'] = $request['5_5_1d'];
       $val551d = $request['5_5_1d'] * 1.14;
 
-      $arrVal['5_5_2'] = $request['5_5_2'];
-      $val552 = $request['5_5_2'] * 1.14;
+      $skor = $request['5_5_2']; //$skor == Rpta
+      $semester = $request['5_5_2sem'];
+      if ($semester == 1) {
+        if ($skor <= 6) {
+          $val552 = 4;
+        } elseif ($skor < 14) {
+          $val552 = (14 - $skor) / 2;
+        } elseif ($skor >= 14) {
+          $val552 = 0;
+        }
+      } elseif ($semester == 2) {
+        if ($skor <= 12) {
+          $val552 = 4;
+        } elseif ($skor < 28) {
+          $val552 = (28 - $skor) / 4;
+        } elseif ($skor >= 28) {
+          $val552 = 0;
+        }
+      }
+      $arrVal['5_5_2'] = $val552;
+      $val552 = $val552 * 1.14;
 
       $arrVal['5_6'] = $request['5_6'];
       $val56 = $request['5_6'] * 0.57;
@@ -332,7 +568,7 @@ class HomeController extends Controller
       $arrVal['5_7_5'] = $request['5_7_5'];
       $val575 = $request['5_7_5'] * 0.57;
 
-      $hasil = $val511a + $val511b + $val512a + $val512b + $val512c + $val514 + $val52a + $val52b +  $val532 + $val541b + $val541c + $val542 + $val551b + $val551c + $val551d + $val552 + $val56 + $val571 + $val572 + $val573 + $val574 + $val575;
+      $hasil = $val511a + $val511b + $val512a + $val512b + $val512c + $val514 + $val52a + $val52b + $val531a + $val531b + $val532 + $val541a + $val541b + $val541c + $val542 + $val551a + $val551b + $val551c + $val551d + $val552 + $val56 + $val571 + $val572 + $val573 + $val574 + $val575;
       return view('standart5')->with('hasil', $hasil)->with('value', $arrVal);
     }
 
@@ -343,6 +579,11 @@ class HomeController extends Controller
 
     public function standart6(Request $req) {
       dd($req->all());
+    }
+
+    public function toStandart7()
+    {
+      return view('standart7')->with('hasil', '')->with('value', '');
     }
 
     public function standart7(Request $request)
@@ -404,10 +645,5 @@ class HomeController extends Controller
 
       $hasil = $val711 + $val712 + $val713 + $val714 + $val721 + $val722 + $val731 + $val732;
       return view('standart7')->with('hasil', $hasil)->with('value', $arrVal);
-    }
-
-    public function toStandart7()
-    {
-      return view('standart7')->with('hasil', '');
     }
 }
