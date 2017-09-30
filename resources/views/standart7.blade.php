@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDART 7</div>
+                    <div class="panel-heading">STANDAR 7</div>
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart7')]) }}
                             <div class="form-group">
@@ -60,13 +60,25 @@
                             </div>
                             <div class="form-group">
                                 <label>7.1.2 &nbsp; Keterlibatan mahasiswa yang melakukan tugas akhir dalam penelitian dosen.</label>
-                                <p>Persentase mahasiswa yang melakukan tugas akhir dalam penelitian dosen
-                                    <input type="number" name="7.1.2" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1" required>
-                                %</p>
+                                <p>Banyaknya mahasiswa Program Studi yang ikut serta dalam penelitian dosen adalah
+                                    <input type="number" name="7.1.2ikt" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1">
+                                    orang, dari 
+                                    <input type="number" name="7.1.2tot" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1">
+                                    mahasiswa yang melakukan tugas akhir memalui skripsi.
+                                </p>
+                                <small><i>Note: Biarkan kosong jika tidak ada yang mahasiswa yang terlibat dalam penelitian dosen dalam tiga tahun terakhir</i>.</small>
                             </div>
                             <div class="form-group">
-                                <label>7.1.3 &nbsp; Jumlah artikel ilmiah yang dihasilkan oleh dosen tetap yang bidang keahliannya sama dengan PS, selama 3 tahun</label>
-                                {{-- reuse 7.1.1 --}}
+                                <label>7.1.3 &nbsp; Jumlah artikel ilmiah yang dihasilkan oleh dosen tetap yang bidang keahliannya sama dengan Program Studi, selama 3 tahun</label>
+                                <p>Banyaknya dosen pada tingkat lokal
+                                    <input type="number" name="7.1.3c" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
+                                </p>
+                                <p>Banyaknya dosen pada tingkat nasional
+                                    <input type="number" name="7.1.3b" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
+                                </p>
+                                <p>Banyaknya dosen pada tingkat internasional
+                                    <input type="number" name="7.1.3a" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
+                                </p>
                             </div>
                             <div class="form-group">
                                 <label>7.1.4 &nbsp; Karya-karya PS/institusi yang telah memperoleh perlindungan Hak atas Kekayaan Intelektual (HaKI) dalam tiga tahun terakhir.</label>
@@ -79,23 +91,17 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('7.1.4', 2) }}Tidak ada karya dosen tetap yang memperoleh HaKI</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('7.1.4', 1) }}(Tidak ada skor 1)</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('7.1.4', 0) }}(Tidak ada skor 0)</label>
-                                </div>
                             </div>
                             <div class="form-group">
-                                <label>7.2.1 &nbsp; Jumlah kegiatan pelayanan/pengabdian kepada masyarakat (PkM) yang dilakukan oleh dosen tetap yang bidang keahliannya sama dengan PS selama tiga tahun.</label>
-                                <p>Jumlah penelitian dengan biaya luar negeri yang sesuai bidang ilmu
-                                    <input type="number" name="7.2.1a" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1" required>
+                                <label>7.2.1 &nbsp; Jumlah kegiatan pelayanan/pengabdian kepada masyarakat (PkM) yang dilakukan oleh dosen tetap yang bidang keahliannya sama dengan Program Studi selama tiga tahun.</label>
+                                <p>Jumlah kegiatan PkM dengan biaya luar negeri yang sesuai bidang ilmu
+                                    <input type="number" name="7.2.1a" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
                                 </p>
-                                <p>Jumlah penelitian dengan biaya luar yang sesuai bidang ilmu
-                                    <input type="number" name="7.2.1b" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1" required>
+                                <p>Jumlah kegiatan PkM dengan biaya luar yang sesuai bidang ilmu
+                                    <input type="number" name="7.2.1b" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
                                 </p>
-                                <p>Jumlah penelitian dengan biaya dari PT/sendiri yang sesuai bidang ilmu
-                                    <input type="number" name="7.2.1c" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1" required>
+                                <p>Jumlah kegiatan PkM dengan biaya dari PT/sendiri yang sesuai bidang ilmu
+                                    <input type="number" name="7.2.1c" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
                                 </p>
                             </div>
                             <div class="form-group">
@@ -130,9 +136,6 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('7.3.1', 1) }}Belum ada atau tidak ada kerjasama.</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('7.3.1', 0) }}(Tidak ada skor nol)</label>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>7.3.2 &nbsp; Kegiatan kerjasama dengan instansi di luar negeri dalam tiga tahun terakhir.</label>
@@ -148,16 +151,39 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('7.3.2', 1) }}Belum ada atau tidak ada kerjasama.</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('7.3.2', 0) }}(Tidak ada skor nol)</label>
-                                </div>
                             </div>
-                            {{-- {{ Form::submit('NEXT TO STANDART 7', ['class' => 'btn btn-block btn-success']) }} --}}
-                            {{-- <a href="{{ route('standart7') }}" id="next"> > </a> --}}
+                            <div id="hidden"></div>
+                            {{ Form::submit('LIAT TOTAL SKOR', ['class' => 'btn btn-block btn-success']) }}
                         {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        var hasil = {!! json_encode($hasil) !!}
+        var value = {!! json_encode($value) !!}
+
+        if (hasil || value) {
+          localStorage.nilaiStandart7 = hasil;
+          localStorage.setItem('value7', JSON.stringify(value));
+        } else {
+
+        }
+
+        function appendData() {
+            var dataS4 = JSON.parse(localStorage.getItem('value4'));
+            if (!dataS4) {
+                $('#btn_submit').hide();
+                alert('Standart 4 perlu di isi terlebih dahulu!!');
+                return window.location.href = '{{ route("standart4") }}';
+            }
+
+            $('#hidden').append('<input type="hidden" name="dosen" value="'+ dataS4['dosen'] +'"/>');
+        }
+
+        $(document).ready(function() {
+            appendData();
+        });
+    </script>
 @endsection

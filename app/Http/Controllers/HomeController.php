@@ -399,6 +399,7 @@ class HomeController extends Controller
       $arrVal['4_6_2'] = $request['4_6_2'];
       $val462 = $request['4_6_2'] * 0.72;
 
+      $arrVal['dosen'] = $totalDosen;
       $hasil = $val41 + $val421 + $val422 + $val431a + $val431b + $val431c + $val431d + $val432 + $val433 + $val434 + $val435 + $val441 + $val442a + $val442b + $val451 + $val452 + $val453 + $val454 + $val455 + $val461a + $val461b + $val461c + $val462;
       return view('standart4')->with('hasil', $hasil)->with('value', $arrVal);
     }
@@ -574,11 +575,107 @@ class HomeController extends Controller
 
     public function toStandart6()
     {
-      return view('standart6')->with('hasil', '');
+      return view('standart6')->with('hasil', '')->with('value', '');
     }
 
-    public function standart6(Request $req) {
-      dd($req->all());
+    public function standart6(Request $request)
+    {
+      $arrVal = [];
+      $arrVal['6_1'] = $request['6_1'];
+      $val61 = $request['6_1'] * 0.67;
+
+      $skor = $request['6_2_1']; //$skor == Dom
+      if ($skor >= 18) {
+        $val621 = 4;
+      } elseif ($skor < 18) {
+        $val621 = $skor / 4.5;
+      }
+      $arrVal['6_2_1'] = $val621;
+      $val621 = $val621 * 1.34;
+
+      $skor = $request['6_2_2']; // $skor == Rpd
+      if ($skor >= 3) {
+        $val622 = 4;
+      } elseif ($skor < 3) {
+        $val622 = (4 * $skor) / 3;
+      }
+      $arrVal['6_2_2'] = $val622;
+      $val622 = $val622 * 2.02;
+
+      $skor = $request['6_2_3']; // $skor == Rpkm
+      if ($skor >= 1.5) {
+        $val623 = 4;
+      } elseif ($skor < 1.5) {
+        $val623 = (8 * $skor) / 3;
+      }
+      $arrVal['6_2_3'] = $val623;
+      $val623 = $val623 * 0.67;
+
+      $luasA = ($request['6_3_1a']) + (2 * $request['6_3_1b']) + (3 * $request['6_3_1c']) + (4 * $request['6_3_1d']);
+      $luasB = $request['6_3_1a'] + $request['6_3_1b'] + $request['6_3_1c'] + $request['6_3_1d'];
+      $val631 = $luasA / $luasB;
+      $arrVal['6_3_1'] = $val631;
+      $val631 = $val631 * 2.02;
+
+      $arrVal['6_3_2'] = $request['6_3_2'];
+      $val632 = $request['6_3_2'] * 2.02;
+
+      $arrVal['6_3_3'] = $request['6_3_3'];
+      $val633 = $request['6_3_3'] * 0.67;
+
+      $skor = $request['6_4_1a'] / 100;
+      $val641a = $skor;
+      if ($skor >= 4) {
+        $val641a = 4;
+      }
+      $arrVal['6_4_1a'] = $val641a;
+      $val641a = $val641a * 0.17;
+
+      $skor = $request['6_4_1b'] / 50;
+      $val641b = $skor;
+      if ($skor >= 4) {
+        $val641b = 4;
+      }
+      $arrVal['6_4_1b'] = $val641b;
+      $val641b = $val641b * 0.17;
+
+      $arrVal['6_4_1c'] = $request['6_4_1c'];
+      $val641c = $request['6_4_1c'] * 0.67;
+
+      $arrVal['6_4_1d'] = $request['6_4_1d'];
+      $val641d = $request['6_4_1d'] * 1.01;
+
+      $skor = $request['6_4_1e'];
+      if ($skor >= 9) {
+        $val641e = 4;
+      } else {
+        $val641e = (4 * $skor) / 9;
+      }
+      $arrVal['6_4_1e'] = $val641e;
+      $val641e = $val641e * 0.17;
+
+      $arrVal['6_4_2'] = $request['6_4_2'];
+      $val642 = $request['6_4_2'] * 0.67;
+
+      $arrVal['6_4_3'] = $request['6_4_3'];
+      $val643 = $request['6_4_3'] * 1.34;
+
+      $arrVal['6_5_1'] = $request['6_5_1'];
+      $val651 = $request['6_5_1'] * 1.34;
+
+      $val652 = 0;
+      $req652 = $request['6_5_2'];
+      foreach ($req652 as $parentItem) {
+        foreach ($parentItem as $item) {
+          $val652 += $item;
+        }
+      }
+      $val652 = $val652 / 11;
+      $arrVal['6_5_2'] = $val652;
+      $val652 = $val652 * 0.67;
+
+      $hasil = $val61 + $val621 + $val622 + $val623 + $val631 + $val632 + $val633 + $val641a + $val641b + $val641c + $val641d + $val641e + $val642 + $val643 + $val651 + $val652;
+      return view('standart6')->with('hasil', $hasil)->with('value', $arrVal);
     }
 
     public function toStandart7()
@@ -588,35 +685,39 @@ class HomeController extends Controller
 
     public function standart7(Request $request)
     {
-      $skor = (($request['7_1_1a'] * 4) + ($request['7_1_1b'] * 2) + $request['7_1_1c']) /  $request['4_3_1']; // $skor = NK (Nilai Kasar)
+      $arrVal = [];
+      $skor = (($request['7_1_1a'] * 4) + ($request['7_1_1b'] * 2) + $request['7_1_1c']) /  $request['dosen']; // $skor = NK (Nilai Kasar)
       if ($skor >= 2){
         $val711 = 4;
-      } elseif ($skor > 0)
-      {
-        $val771 = (1.5 * $skor) + 1;
-      } elseif ($skor == 0){
+      } elseif ($skor > 0) {
+        $val711 = (1.5 * $skor) + 1;
+      } elseif ($skor == 0) {
         $val711 = 0;
       }
       $arrVal['7_1_1'] = $val711;
       $val711 = $val711 * 3.75;
 
-      $skor = $request['7_1_2']; // $skor == PD
-      if ($skor >= 25){
-        $val712 = 4;
-      } elseif ($skor > 0){
-        $val712 = 1 + (12 * $skor);
-      } elseif ($skor == 0){
+      if ($request['7_1_2ikt'] && $request['7_1_2tot']) {
+        $skor = $request['7_1_2ikt'] / $request['7_1_2tot']; // $skor == PD
+        if ($skor >= 0.25) {
+          $val712 = 4;
+        } elseif ($skor > 0) {
+          $val712 = 1 + (12 * $skor);
+        } elseif ($skor == 0) {
+          $val712 = 0;
+        }
+      } else {
         $val712 = 0;
       }
       $arrVal['7_1_2'] = $val712;
       $val712 = $val712 * 1.88;
 
-      /* 7.1.3 == 7.1.1 */
-      if ($skor >= 6){
+      $skor = (($request['7_1_3a'] * 4) + ($request['7_1_3b'] * 2) + $request['7_1_3c']) / $request['dosen']; // $skor == NK
+      if ($skor >= 6) {
         $val713 = 4;
-      } elseif ($skor > 0){
+      } elseif ($skor > 0) {
         $val713 = 1 + ($skor / 2);
-      } elseif ($skor == 0){
+      } elseif ($skor == 0) {
         $val713 = 0;
       }
       $arrVal['7_1_3'] = $val713;
@@ -625,23 +726,25 @@ class HomeController extends Controller
       $arrVal['7_1_4'] = $request['7_1_4'];
       $val714 = $request['7_1_4'] * 1.88;
 
-      /* 7.2.1 == 7.1.3 == 7.1.1 */
-      if ($skor >= 1){
+      $skor = (($request['7_2_1a'] * 4) + ($request['7_2_1b'] * 2) + $request['7_2_1c']) / $request['dosen']; // $skor == NK
+      if ($skor >= 1) {
         $val721 = 4;
-      } elseif($skor > 0){
+      } elseif($skor > 0) {
         $val721 = (3 * $skor) + 1;
-      } elseif($skor == 0){
+      } elseif($skor == 0) {
         $val721 = 0;
       }
+      $arrVal['7_2_1'] = $val721;
+      $val721 = $val721 * 1.88;
 
       $arrVal['7_2_2'] = $request['7_2_2'];
       $val722 = $request['7_2_2'] * 1.88;
 
       $arrVal['7_3_1'] = $request['7_3_1'];
-      $val722 = $request['7_3_1'] * 1.88;
+      $val731 = $request['7_3_1'] * 1.88;
 
       $arrVal['7_3_2'] = $request['7_3_2'];
-      $val722 = $request['7_3_2'] * 1.88;
+      $val732 = $request['7_3_2'] * 1.88;
 
       $hasil = $val711 + $val712 + $val713 + $val714 + $val721 + $val722 + $val731 + $val732;
       return view('standart7')->with('hasil', $hasil)->with('value', $arrVal);

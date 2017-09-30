@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDART 6</div>
+                    <div class="panel-heading">STANDAR 6</div>
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart6')]) }}
                             <div class="form-group">
@@ -67,20 +67,23 @@
                             <div class="form-group">
                                 <label>6.2.1 &nbsp; Pengunaan dana untuk operasional (pendidikan, penelitian, pengabdian pada masyarakat, termasuk gaji dan upah).</label>
                                 <p>jumlah dana operasional/mahasiswa/tahun
-                                    <input type="number" name="6.2.1" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required />
+                                    <input type="number" name="6.2.1" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required onchange="confirmation('operasional')" id="operasional" />
+                                    Juta
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label>6.2.2 &nbsp; Dana penelitian dalam tiga tahun terakhir</label>
                                 <p>Rata-rata dana penelitian/dosen tetap/tahun
-                                    <input type="number" name="6.2.2" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required /><br/>
+                                    <input type="number" name="6.2.2" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required onchange="confirmation('penelitian')" id="penelitian" />
+                                    Juta<br/>
                                     <small><i>Note: Di luar dana penelitian/penulisan skripsi, tesis, dan disertasi sebagai bagian dari studi lanjut.</i></small>
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label>6.2.3 &nbsp; Dana yang diperoleh dalam rangka pelayanan/pengabdian kepada masyarakat dalam tiga tahun terakhir</label>
                                 <p>Jumlah dana
-                                    <input type="number" name="6.2.3" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required />   
+                                    <input type="number" name="6.2.3" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required onchange="confirmation('pengabdian')" id="pengabdian" />   
+                                    Juta
                                 </p>
                             </div>
                             <div class="form-group">
@@ -111,9 +114,6 @@
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('6.3.2', 1) }} Prasarana kurang lengkap dan mutunya kurang baik</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('6.3.2', 0) }} Tidak ada nilai</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -202,9 +202,6 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('6.4.2', 1) }} Tidak ada perpustakaan di luar PT yang dapat diakses</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('6.4.2', 0) }} Tidak ada nilai</label>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>6.4.3 &nbsp; Ketersediaan, akses dan pendayagunaan sarana utama di lab (tempat praktikum, bengkel, studio, ruang simulasi, rumah sakit, puskesmas/balai kesehatan, <i>green house</i>, lahan untuk pertanian, dan sejenisnya)</label>
@@ -238,9 +235,6 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('6.5.1', 1) }} Proses pembelajaran dilakukan secara manual. engelolaan koleksi perpustakaan menggunakan komputer <i>stand alone,</i> atau secara manual</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('6.5.1', 0) }} Tidak ada nilai</label>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>6.5.2 &nbsp; Aksesibilitas data dalam sistem informasi.</label>
@@ -264,8 +258,7 @@
                                     </table>
                                 </div>
                             </div>
-                            {{-- {{ Form::submit('NEXT TO STANDART 7', ['class' => 'btn btn-block btn-success']) }} --}}
-                            <a href="{{ route('standart7') }}" id="next"> > </a>
+                            {{ Form::submit('LANJUT KE STANDAR 7', ['class' => 'btn btn-block btn-success']) }}
                         {{ Form::close() }}
                     </div>
                 </div>
@@ -273,17 +266,28 @@
         </div>
     </div>
     <script type="text/javascript">
+        var hasil = {!! json_encode($hasil) !!}
+        var value = {!! json_encode($value) !!}
+
+        if (hasil || value) {
+          localStorage.nilaiStandart6 = hasil;
+          localStorage.setItem('value6', JSON.stringify(value));
+          window.location.href = '{{ route("standart7") }}';
+        } else {
+
+        }
+
         function tableBody() {
             for (var i = 0; i < test.length; i++) {
-                $('#table-body').append(`
-                    <tr>
+                $('#table-body').append(
+                    `<tr>
                         <td>`+test[i].text+`</td>
-                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[0] +`')"><input id="`+ test[i].id[0] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[0] +`')" value="1" /></td>
-                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[1] +`')"><input id="`+ test[i].id[1] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[1] +`')" value="1" /></td>
-                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[2] +`')"><input id="`+ test[i].id[2] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[2] +`')" value="1" /></td>
-                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[3] +`')"><input id="`+ test[i].id[3] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[3] +`')" value="1" /></td>
-                    </tr>
-                    `);
+                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[0] +`')"><input id="`+ test[i].id[0] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[0] +`')" value=1 /></td>
+                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[1] +`')"><input id="`+ test[i].id[1] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[1] +`')" value=1 /></td>
+                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[2] +`')"><input id="`+ test[i].id[2] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[2] +`')" value=1 /></td>
+                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[3] +`')"><input id="`+ test[i].id[3] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[3] +`')" value=1 /></td>
+                    </tr>`
+                );
             }
         }
 
@@ -291,6 +295,25 @@
             var value = document.getElementById(id).checked;
             document.getElementById(id).checked = !value;
         }
+
+        function confirmation(id) {
+            var value = document.getElementById(id).value;
+            var money = (parseInt(value)).formatMoney(0);
+            if (value >= 1000 ) {
+                alert('Jumlah dana yang anda input lebih dari atau sama dengan 1 Triliun (Rp'+ money +',000,000)');
+            }
+        }
+
+        Number.prototype.formatMoney = function formatMoney(c, d, t) {
+        var n = this, 
+            c = isNaN(c = Math.abs(c)) ? 2 : c, 
+            d = d == undefined ? "." : d, 
+            t = t == undefined ? "," : t, 
+            s = n < 0 ? "-" : "", 
+            i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+            j = (j = i.length) > 3 ? j % 3 : 0;
+           return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+         };
 
         var test = [
             {
@@ -301,7 +324,7 @@
                     '1col5',
                     '1col6'
                 ],
-                'name' : '6.5.21[]'
+                'name' : '6.5.2[0][]'
             },
             {
                 'text' : 'Kartu Rencana Studi (KRS)',
@@ -311,7 +334,7 @@
                     '2col5',
                     '2col6'
                 ],
-                'name' : '6.5.22[]'
+                'name' : '6.5.2[1][]'
             },
             {
                 'text' : 'Jadwal mata kuliah',
@@ -321,7 +344,7 @@
                     '3col5',
                     '3col6'
                 ],
-                'name' : '6.5.23[]'
+                'name' : '6.5.2[2][]'
             },
             {
                 'text' : 'Nilai mata kuliah',
@@ -331,7 +354,7 @@
                     '4col5',
                     '4col6'
                 ],
-                'name' : '6.5.24[]'
+                'name' : '6.5.2[3][]'
             },
             {
                 'text' : 'Transkrip akademik',
@@ -341,7 +364,7 @@
                     '5col5',
                     '5col6'
                 ],
-                'name' : '6.5.25[]'
+                'name' : '6.5.2[4][]'
             },
             {
                 'text' : 'Lulusan',
@@ -351,7 +374,7 @@
                     '6col5',
                     '6col6'
                 ],
-                'name' : '6.5.26[]'
+                'name' : '6.5.2[5][]'
             },
             {
                 'text' : 'Dosen',
@@ -361,7 +384,7 @@
                     '7col5',
                     '7col6'
                 ],
-                'name' : '6.5.27[]'
+                'name' : '6.5.2[6][]'
             },
             {
                 'text' : 'Pegawai',
@@ -371,7 +394,7 @@
                     '8col5',
                     '8col6'
                 ],
-                'name' : '6.5.28[]'
+                'name' : '6.5.2[7][]'
             },
             {
                 'text' : 'Keuangan',
@@ -381,7 +404,7 @@
                     '9col5',
                     '9col6'
                 ],
-                'name' : '6.5.29[]'
+                'name' : '6.5.2[8][]'
             },
             {
                 'text' : 'Inventaris',
@@ -391,7 +414,7 @@
                     '10col5',
                     '10col6'
                 ],
-                'name' : '6.5.210[]'
+                'name' : '6.5.2[9][]'
             },
             {
                 'text' : 'Perpustakaan',
@@ -401,7 +424,7 @@
                     '11col5',
                     '11col6'
                 ],
-                'name' : '6.5.211[]'
+                'name' : '6.5.2[10][]'
             },
         ];
 

@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDART 3</div>
+                    <div class="panel-heading">STANDAR 3</div>
                     <div class="panel-body">
                         {!! Form::open(['url' => route('post_standart3')]) !!}
                             <label>3.1.1.a &nbsp; Rasio calon mahasiswa yang ikut seleksi terhadap daya tampung</label>
@@ -433,7 +433,7 @@
                                     <label>{{ Form::radio('3.4.2', 0) }} Tidak ada partisipasi alumni</label>
                                 </div>
                             </div>
-                            {{ Form::submit('NEXT TO STANDART 4', ['class' => 'btn btn-block btn-success']) }}
+                            {{ Form::submit('LANJUT KE STANDAR 4', ['class' => 'btn btn-block btn-success']) }}
                             {{-- <a href="{{ route('standart4') }}" id="next"> > </a> --}}
                         {!! Form::close() !!}
                     </div>

@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDART 5</div>
+                    <div class="panel-heading">STANDAR 5</div>
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart5')]) }}
                             <div class="form-group">
@@ -425,7 +425,7 @@
                                     <label>{{ Form::radio('5.7.5', 1) }} Kegiatan yang dilakukan tidak menunjang pengembangan perilaku kecendekiawanan</label>
                                 </div>
                             </div>
-                            {{ Form::submit('NEXT TO STANDART 5', ['class' => 'btn btn-block btn-success']) }}
+                            {{ Form::submit('LANJUT KE STANDAR 5', ['class' => 'btn btn-block btn-success']) }}
                             {{-- <a href="{{ route('standart6') }}" id="next"> > </a> --}}
                         {{ Form::close() }}
                     </div>
@@ -438,7 +438,7 @@
         var hasil = {!! json_encode($hasil) !!}
         var value = {!! json_encode($value) !!}
 
-        alert('point 5.1.3 belum slesai');
+        alert('sisa point 5.1.3 belum slesai');
         if (hasil || value) {
             localStorage.nilaiStandart5 = hasil;
             localStorage.setItem('value5', JSON.stringify(value));

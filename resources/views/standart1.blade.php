@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">STANDART 1</div>
+                <div class="panel-heading">STANDAR 1</div>
 
                 <div class="panel-body">
                     {!! Form::open(['url' => route('post_standart1')]) !!}
@@ -84,7 +84,7 @@
                         </div>
                     </div>
 
-                    {{ Form::submit('NEXT TO STANDART 2', ['class' => 'btn btn-block btn-success']) }}
+                    {{ Form::submit('LANJUT KE STANDAR 2', ['class' => 'btn btn-block btn-success']) }}
 
                     {!! Form::close() !!}
                     {{-- <a href="{{ route('standart2') }}" id="next">></a> --}}

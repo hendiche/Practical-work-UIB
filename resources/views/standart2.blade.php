@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">STANDART 2</div>
+				<div class="panel-heading">STANDAR 2</div>
 				<div class="panel-body">
 					{!! Form::open(['url' => route('post_standart2')]) !!}
                     <div class="form-group">
@@ -159,7 +159,7 @@
                             <label>{{ Form::radio('2.6', 1) }}Ada bukti hanya 1 usaha yang dilakukan</label>
                         </div>
                     </div>
-                    {{ Form::submit('NEXT TO STANDART 3', ['class' => 'btn btn-block btn-success']) }}
+                    {{ Form::submit('LANJUT KE STANDAR 3', ['class' => 'btn btn-block btn-success']) }}
                     <a href="{{ route('standart3') }}" id="next">></a>
                     {!! Form::close() !!}
 				</div>

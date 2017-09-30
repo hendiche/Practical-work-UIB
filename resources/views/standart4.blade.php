@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDART 4</div>
+                    <div class="panel-heading">STANDAR 4</div>
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart4')]) }}
                             <div class="form-group">
@@ -365,7 +365,7 @@
                                     <label>{{ Form::radio('4.6.2', 1) }} Tidak ada upaya pengembangan, padahal kualifikasi dan kompetensi tenaga kependidikan relatif masih kurang</label>
                                 </div>
                             </div>
-                            {{ Form::submit('NEXT TO STANDART 5', ['class' => 'btn btn-block btn-success', 'id' => 'btn_submit']) }}
+                            {{ Form::submit('LANJUT KE STANDAR 5', ['class' => 'btn btn-block btn-success', 'id' => 'btn_submit']) }}
                             {{-- <a href="{{ route('standart5') }}" id="next"> > </a> --}}
                         {{ Form::close() }}
                     </div>
