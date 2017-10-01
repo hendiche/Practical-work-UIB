@@ -282,6 +282,7 @@ class HomeController extends Controller
         }
       }
       $arrVal['4_3_2'] = $val432;
+      $arrVal['opsi'] = $opsi;
       $val432 = $val432 * 0.72;
 
       $kd = $request['4_3_3']; // $kd == Rfte
@@ -549,6 +550,7 @@ class HomeController extends Controller
         }
       }
       $arrVal['5_5_2'] = $val552;
+      $arrVal['opsi'] = $semester;
       $val552 = $val552 * 1.14;
 
       $arrVal['5_6'] = $request['5_6'];
