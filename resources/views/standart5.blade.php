@@ -96,10 +96,10 @@
                             <div class="form-group">
                                 <label>5.1.3 &nbsp; Fleksibilitas mata kuliah pilihan (Matakuliah yang dilaksanakan tiga tahun terakhir)</label>
                                 <p>Jumlah matakuliah pilihan yang disediakan
-                                    <input type="number" name="5.1.3" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required /> sks
+                                    <input type="number" name="5.1.3" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required id="matkul-sedia" onchange="setMax()" /> sks
                                 </p>
                                 <p>Jumlah matakuliah pilihan yang harus diambil
-                                    <input type="number" name="5.1.3get" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required /> sks
+                                    <input type="number" name="5.1.3get" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required id="matkul-ambil"/> sks
                                 </p>
                                 <small><i>Note: Bagi Program Studi yang memiliki jalur pilihan/peminatan/konsentrasi dianggap sebagai mata kuliah pilihan</i></small><br/>
                             </div>
@@ -438,11 +438,15 @@
         var hasil = {!! json_encode($hasil) !!}
         var value = {!! json_encode($value) !!}
 
-        alert('sisa point 5.1.3 belum slesai');
         if (hasil || value) {
             localStorage.nilaiStandart5 = hasil;
             localStorage.setItem('value5', JSON.stringify(value));
             window.location.href = '{{ route("standart6") }}';
+        }
+
+        function setMax() {
+            var maxMatkulSedia = document.getElementById('matkul-sedia').value;
+            var test = document.getElementById('matkul-ambil').max = maxMatkulSedia;
         }
     </script>
 @endsection

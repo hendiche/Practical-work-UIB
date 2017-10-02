@@ -443,14 +443,18 @@ class HomeController extends Controller
       $val512c = $val512c * 0.57;
 
       /* 5.1.3 */
-      // $Bmkp = $request['5_1_3'];
-      // $Rmkp = $request['5_1_3get'];
+      $Bmkp = $request['5_1_3'];
+      $Rmkp = $request['5_1_3'] / $request['5_1_3get'];
 
-      // if ($Bmkp >= 9 && ($Bmkp >= ($Rmkp * 2))) {
-      //   $val513 = 4;
-      // } elseif ($Bmkp >= 9 && ()) {
-
-      // }
+      if ($Bmkp >= 9 && $Rmkp >=2) {
+        $val513 = 4;
+      } elseif ($Bmkp >= 9 && $Rmkp >=1) {
+        $val513 = 2 * $Rmkp;
+      } elseif ($Bmkp < 9 && $Rmkp <= 1) {
+        $val513 = 2;
+      }
+      $arrVal['5_1_3'] = $val513;
+      $val513 = $val513 * 0.57;
       
       $arrVal['5_1_4'] = $request['5_1_4'];
       $val514 = $request['5_1_4'] * 1.14;
@@ -571,7 +575,7 @@ class HomeController extends Controller
       $arrVal['5_7_5'] = $request['5_7_5'];
       $val575 = $request['5_7_5'] * 0.57;
 
-      $hasil = $val511a + $val511b + $val512a + $val512b + $val512c + $val514 + $val52a + $val52b + $val531a + $val531b + $val532 + $val541a + $val541b + $val541c + $val542 + $val551a + $val551b + $val551c + $val551d + $val552 + $val56 + $val571 + $val572 + $val573 + $val574 + $val575;
+      $hasil = $val511a + $val511b + $val512a + $val512b + $val512c + $val513 + $val514 + $val52a + $val52b + $val531a + $val531b + $val532 + $val541a + $val541b + $val541c + $val542 + $val551a + $val551b + $val551c + $val551d + $val552 + $val56 + $val571 + $val572 + $val573 + $val574 + $val575;
       return view('standart5')->with('hasil', $hasil)->with('value', $arrVal);
     }
 
