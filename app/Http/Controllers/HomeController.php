@@ -452,6 +452,8 @@ class HomeController extends Controller
         $val513 = 2 * $Rmkp;
       } elseif ($Bmkp < 9 && $Rmkp <= 1) {
         $val513 = 2;
+      } else {
+        $val513 = 2;
       }
       $arrVal['5_1_3'] = $val513;
       $val513 = $val513 * 0.57;

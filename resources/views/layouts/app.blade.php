@@ -12,7 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/hover-min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"> --}}
 
@@ -25,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top" style="border-bottom: 5px solid #ECB200; background-color: #00254E;">
             <div class="container">
                 <div class="navbar-header">
 
@@ -38,8 +40,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/') }}" style="color: white">
+                        {{-- {{ config('app.name', 'Laravel') }} --}}
+                        Sistem Simulasi Akreditasi Online
                     </a>
                 </div>
 
