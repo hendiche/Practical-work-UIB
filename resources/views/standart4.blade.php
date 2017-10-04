@@ -24,14 +24,37 @@
         .input-pertemuan-dosen {
             width: 150px;
         }
+        .modal-size {
+            width: 700px
+        }
+        .modal-text {
+            font-size: 18px;
+        }
+        .modal-text > p {
+            white-space: nowrap;
+            overflow: hidden;
+            width: 670px;
+            animation: type 4s steps(60, end);
+        }
+        @keyframes type{
+            from { width: 0; }
+        }
     </style>
 @endpush
 @section('content')
-    <div class="container">
+    <div class="loader" id="loader-page"></div>
+
+    <div class="container" style="display: none;" id="container-st4">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDAR 4</div>
+                    <div class="panel-heading display-flex">
+                        <h3 class="d-flex-2"><strong>STANDAR 4</strong></h3>
+                        <div class="d-flex-1 text-right btn-title">
+                            <a href="{{ route('menu') }}" class="btn btn-default hvr-icon-drop">Menu</a>
+                            <a class="btn btn-default hvr-icon-wobble-horizontal" id="skip">Lewati</a>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart4')]) }}
                             <div class="form-group">
@@ -366,12 +389,25 @@
                                 </div>
                             </div>
                             {{ Form::submit('LANJUT KE STANDAR 5', ['class' => 'btn btn-block btn-success', 'id' => 'btn_submit']) }}
-                            {{-- <a href="{{ route('standart5') }}" id="next"> > </a> --}}
+                            {{-- <a href="{{ route('standart5') }}"> > </a> --}}
                         {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="warningModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-size">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body modal-text">
+            <p>Tidak boleh melewati, data standar 4 tidak boleh kosong!!!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
     </div>
     <script type="text/javascript">
         var hasil = {!! json_encode($hasil) !!}
@@ -382,14 +418,14 @@
             localStorage.setItem('value4', JSON.stringify(value));
             window.location.href = '{{ route("standart5") }}';
         } else {
-
+            setTimeout(function() {
+                $('#loader-page').css('display', 'none');
+                $('#container-st4').css('display', 'block');
+            }, 500);
         }
 
-        var dataS3 = JSON.parse(localStorage.getItem('value3'));
-        if (!dataS3) {
-            // $('#btn_submit').hide();
-            // alert('Standart 3 perlu di isi terlebih dahulu!!');
-            // window.location.href = '{{ route("standart3") }}';
-        }
+        $('#skip').click(function() {
+            $('#warningModal').modal();
+        });
     </script>
 @endsection

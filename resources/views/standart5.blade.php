@@ -17,11 +17,19 @@
     </style>
 @endpush
 @section('content')
-    <div class="container">
+    <div class="loader" id="loader-page"></div>
+
+    <div class="container" style="display: none;" id="container-st5">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDAR 5</div>
+                    <div class="panel-heading display-flex">
+                        <h3 class="d-flex-2"><strong>STANDAR 5</strong></h3>
+                        <div class="d-flex-1 text-right btn-title">
+                            <a href="{{ route('menu') }}" class="btn btn-default hvr-icon-drop">Menu</a>
+                            <a href="{{ route('standart6') }}" class="btn btn-default hvr-icon-wobble-horizontal">Lewati</a>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart5')]) }}
                             <div class="form-group">
@@ -426,7 +434,6 @@
                                 </div>
                             </div>
                             {{ Form::submit('LANJUT KE STANDAR 5', ['class' => 'btn btn-block btn-success']) }}
-                            {{-- <a href="{{ route('standart6') }}" id="next"> > </a> --}}
                         {{ Form::close() }}
                     </div>
                 </div>
@@ -442,11 +449,16 @@
             localStorage.nilaiStandart5 = hasil;
             localStorage.setItem('value5', JSON.stringify(value));
             window.location.href = '{{ route("standart6") }}';
+        } else {
+            setTimeout(function() {
+                $('#loader-page').css('display', 'none');
+                $('#container-st5').css('display', 'block');
+            }, 500);
         }
 
         function setMax() {
             var maxMatkulSedia = document.getElementById('matkul-sedia').value;
-            var test = document.getElementById('matkul-ambil').max = maxMatkulSedia;
+            document.getElementById('matkul-ambil').max = maxMatkulSedia;
         }
     </script>
 @endsection

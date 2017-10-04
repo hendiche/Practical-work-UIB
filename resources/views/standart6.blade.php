@@ -39,11 +39,19 @@
     </style>
 @endpush
 @section('content')
-    <div class="container">
+    <div class="loader" id="loader-page"></div>
+
+    <div class="container" style="display: none;" id="container-st6">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDAR 6</div>
+                    <div class="panel-heading display-flex">
+                        <h3 class="d-flex-2"><strong>STANDAR 6</strong></h3>
+                        <div class="d-flex-1 text-right btn-title">
+                            <a href="{{ route('menu') }}" class="btn btn-default hvr-icon-drop">Menu</a>
+                            <a href="{{ route('standart7') }}" class="btn btn-default hvr-icon-wobble-horizontal">Lewati</a>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart6')]) }}
                             <div class="form-group">
@@ -274,7 +282,10 @@
           localStorage.setItem('value6', JSON.stringify(value));
           window.location.href = '{{ route("standart7") }}';
         } else {
-
+            setTimeout(function() {
+                $('#loader-page').css('display', 'none');
+                $('#container-st6').css('display', 'block');
+            }, 500);
         }
 
         function tableBody() {

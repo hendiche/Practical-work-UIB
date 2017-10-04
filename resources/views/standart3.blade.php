@@ -10,11 +10,19 @@
     </style>
 @endpush
 @section('content')
-    <div class="container">
+    <div class="loader" id="loader-page"></div>
+
+    <div class="container" style="display: none;" id="container-st3">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDAR 3</div>
+                    <div class="panel-heading display-flex">
+                        <h3 class="d-flex-2"><strong>STANDAR 3</strong></h3>
+                        <div class="d-flex-1 text-right btn-title">
+                            <a href="{{ route('menu') }}" class="btn btn-default hvr-icon-drop">Menu</a>
+                            <a href="{{ route('standart4') }}" class="btn btn-default hvr-icon-wobble-horizontal">Lewati</a>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         {!! Form::open(['url' => route('post_standart3')]) !!}
                             <label>3.1.1.a &nbsp; Rasio calon mahasiswa yang ikut seleksi terhadap daya tampung</label>
@@ -434,7 +442,6 @@
                                 </div>
                             </div>
                             {{ Form::submit('LANJUT KE STANDAR 4', ['class' => 'btn btn-block btn-success']) }}
-                            {{-- <a href="{{ route('standart4') }}" id="next"> > </a> --}}
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -450,7 +457,10 @@
           localStorage.setItem('value3', JSON.stringify(value));
           window.location.href = '{{ route("standart4") }}';
         } else {
-
+            setTimeout(function() {
+                $('#loader-page').css('display', 'none');
+                $('#container-st3').css('display', 'block');
+            }, 500);
         }
 
         function fill() {

@@ -12,35 +12,86 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/hover-min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/hover-min.css') }}" rel="stylesheet" type="text/css">
     {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"> --}}
 
+    <style type="text/css">
+        .color-white {
+            color: #fff !important;
+        }
+        .simul-navbar-header {
+            border-bottom: 5px solid #ECB200;
+            background-color: #00254E;
+        }
+        #loader-page {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+        }
+        .loader {
+            border: 12px solid #f3f3f3; /* Light grey */
+            border-top: 12px solid #00254E; /* Blue */
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .display-flex {
+            display: flex;
+        }
+        .d-flex-1 {
+            flex: 1;
+        }
+        .d-flex-2 {
+            flex: 2;
+        }
+        .btn-title {
+            margin-top: 14px;
+        }
+        .hvr-icon-wobble-horizontal:before {
+            content: '\f04e';
+        }
+        .hvr-icon-drop:before {
+            content: '\f0c9';
+        }
+        @media screen and (max-width: 768px) {
+            .display-flex {
+                flex-direction: column;
+            }
+        }
+    </style>
     @stack('pageCss')
 
     <!-- Script -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top" style="border-bottom: 5px solid #ECB200; background-color: #00254E;">
+        <nav class="navbar navbar-default navbar-static-top simul-navbar-header">
             <div class="container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    {{-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
+                    </button> --}}
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}" style="color: white">
+                    <a class="navbar-brand color-white" href="{{ url('/') }}">
                         {{-- {{ config('app.name', 'Laravel') }} --}}
                         Sistem Simulasi Akreditasi Online
                     </a>
@@ -91,5 +142,6 @@
     {{-- <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/popper.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/bootstrap.min.js') }}"></script> --}}
+    @stack('pageJs')
 </body>
 </html>

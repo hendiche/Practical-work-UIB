@@ -22,6 +22,10 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function menu() {
+      return view('menu');
+    }
+
     public function toStandart1()
     {
         return view('standart1')->with('hasil', '')->with('value', '');
@@ -521,7 +525,7 @@ class HomeController extends Controller
       } elseif ($skor == 0 || $skor >= 20) {
         $val551b = 0;
       }
-      $arrVal['5_5_1b'] = $request['5_5_1b'];
+      $arrVal['5_5_1b'] = $val551b;
       $val551b = $val551b * 0.57;
 
       $skor = $request['5_5_1c'];

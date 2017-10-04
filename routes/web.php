@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/menu', 'HomeController@menu')->name('menu');
+
 Route::get('/standart1', 'HomeController@toStandart1')->name('standart1');
 Route::post('/standart1', 'HomeController@standart1')->name('post_standart1');
 

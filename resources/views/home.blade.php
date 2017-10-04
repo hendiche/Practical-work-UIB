@@ -11,7 +11,7 @@
     		border-radius: 0;
     	}
         .img {
-        	width: 300px;
+        	width: 275px;
         }
         .button-in {
         	padding-top: 20px;
@@ -32,7 +32,7 @@
         	</div>
         </div>
         <div class="col-md-2 col-md-offset-5 top-btn">
-        	<a href="#" class="btn btn-success btn-block flat button-in hvr-float-shadow">MASUK</a>
+        	<a href="{{ route('menu') }}" class="btn btn-success btn-block flat button-in hvr-float-shadow">MASUK</a>
         </div>
     </div>
 </div>

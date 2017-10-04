@@ -29,21 +29,36 @@
             width: 12.5%;
             vertical-align: middle !important;
         }
-        .table th {
-            border: 2px solid #ddd;
-            border-top: 2px solid #ddd !important;
+        .modal-size {
+            width: 700px
         }
-        .table td {
-            border: 2px solid #ddd;
+        .modal-text {
+            font-size: 18px;
+        }
+        .modal-text > p {
+            white-space: nowrap;
+            overflow: hidden;
+            width: 670px;
+            animation: type 4s steps(60, end);
+        }
+        @keyframes type{
+            from { width: 0; }
         }
     </style>
 @endpush
 @section('content')
-    <div class="container">
+    <div class="loader" id="loader-page"></div>
+
+    <div class="container" style="display: none;" id="container-st7">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">STANDAR 7</div>
+                    <div class="panel-heading display-flex">
+                        <h3 class="d-flex-2"><strong>STANDAR 7</strong></h3>
+                        <div class="d-flex-1 text-right btn-title">
+                            <a href="{{ route('menu') }}" class="btn btn-default hvr-icon-drop">Menu</a>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart7')]) }}
                             <div class="form-group">
@@ -160,6 +175,19 @@
             </div>
         </div>
     </div>
+    <div id="warningModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-size">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body modal-text">
+            <p>Data standar 4 kosong, perlu di isi sebelum melanjutkan pengisian!!!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="backTo">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="text/javascript">
         var hasil = {!! json_encode($hasil) !!}
         var value = {!! json_encode($value) !!}
@@ -168,22 +196,27 @@
           localStorage.nilaiStandart7 = hasil;
           localStorage.setItem('value7', JSON.stringify(value));
         } else {
-
+            appendData();
         }
+
+        $('#backTo').click(function() {
+            window.location.href = '{{ route('standart4') }}';
+        })
 
         function appendData() {
             var dataS4 = JSON.parse(localStorage.getItem('value4'));
             if (!dataS4) {
                 $('#btn_submit').hide();
-                alert('Standart 4 perlu di isi terlebih dahulu!!');
-                return window.location.href = '{{ route("standart4") }}';
+                return $('#warningModal').modal();
+                // alert('Standart 4 perlu di isi terlebih dahulu!!');
+                // return window.location.href = '{{ route("standart4") }}';
+            } else {
+                setTimeout(function() {
+                    $('#loader-page').css('display', 'none');
+                    $('#container-st7').css('display', 'block');
+                }, 500);
+                $('#hidden').append('<input type="hidden" name="dosen" value="'+ dataS4['dosen'] +'"/>');
             }
-
-            $('#hidden').append('<input type="hidden" name="dosen" value="'+ dataS4['dosen'] +'"/>');
         }
-
-        $(document).ready(function() {
-            appendData();
-        });
     </script>
 @endsection
