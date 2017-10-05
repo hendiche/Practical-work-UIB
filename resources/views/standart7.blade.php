@@ -195,6 +195,7 @@
         if (hasil || value) {
           localStorage.nilaiStandart7 = hasil;
           localStorage.setItem('value7', JSON.stringify(value));
+          window.location.href = '{{ route('menu') }}';
         } else {
             appendData();
         }

@@ -81,7 +81,7 @@
         		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAqGWUSTmutwYDSeABtBViZjS-byHzn9QFcLkWThq_YA8M17fF" class="img">
         	</div>
         </div>
-        <div class="col-md-12 text-center bot-col">
+        <div class="col-md-12 text-center bot-col" id="middle-div">
             <h2>Status pengisian</h2>
             <div class="d-flex">
                 <div class="hvr-glow" id="standart1">Standar 1</div>
@@ -139,6 +139,7 @@
     var theresData = false;
     var route = '';
     var theresDataCount = 0;
+    var totalScore = 0;
 
     function init(data) {
         var changing = true;
@@ -147,6 +148,7 @@
             if (data[i].data) {
                 theresData = true;
                 theresDataCount += 1;
+                totalScore += data[i].data;
                 if (changing) {
                     route = data[i + 1].id;
                 }
@@ -162,6 +164,13 @@
         }
 
         if (theresDataCount == 7) {
+            $('#middle-div').append(`
+                <div>
+                    <h3 class="animated flipInY">Total skor dari simulasi akreditasi adalah</h3>
+                    <h2 class="animated zoomInUp" style="animation-duration: 2.5s"><strong>`+totalScore+`</strong></h2>
+                </div>
+                `);
+            $('#startAsk').remove();
             $('#button-container').append('<a class="btn btn-danger btn-block flat button-in hvr-float-shadow" onclick="reset()" id="reset">Reset skor</a>');
         }
     }
@@ -173,31 +182,31 @@
 
     var allData = [
         {
-            'data': JSON.parse(localStorage.getItem('value1')),
+            'data': JSON.parse(localStorage.getItem('nilaiStandart1')),
             'id': 'standart1'
         },
         {
-            'data': JSON.parse(localStorage.getItem('value2')),
+            'data': JSON.parse(localStorage.getItem('nilaiStandart2')),
             'id': 'standart2'
         },
         {
-            'data': JSON.parse(localStorage.getItem('value3')),
+            'data': JSON.parse(localStorage.getItem('nilaiStandart3')),
             'id': 'standart3'
         },
         {
-            'data': JSON.parse(localStorage.getItem('value4')),
+            'data': JSON.parse(localStorage.getItem('nilaiStandart4')),
             'id': 'standart4'
         },
         {
-            'data': JSON.parse(localStorage.getItem('value5')),
+            'data': JSON.parse(localStorage.getItem('nilaiStandart5')),
             'id': 'standart5'
         },
         {
-            'data': JSON.parse(localStorage.getItem('value6')),
+            'data': JSON.parse(localStorage.getItem('nilaiStandart6')),
             'id': 'standart6'
         },
         {
-            'data': JSON.parse(localStorage.getItem('value7')),
+            'data': JSON.parse(localStorage.getItem('nilaiStandart7')),
             'id': 'standart7'
         }
     ];
