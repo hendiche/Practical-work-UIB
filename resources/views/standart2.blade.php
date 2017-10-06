@@ -17,7 +17,7 @@
     				<div class="panel-body">
     					{!! Form::open(['url' => route('post_standart2')]) !!}
                         <div class="form-group">
-                            <label>2.1 &nbsp; Tata pomong menjamin terwujudnya visi, terlaksananya misi, tercapainya tujuan, berhasilnya strategi yang digunakan secara kredibel, transparan, akuntabel, bertanggung jawab dan adil.</label>
+                            <label>2.1 &nbsp; Tata pamong menjamin terwujudnya visi, terlaksananya misi, tercapainya tujuan, berhasilnya strategi yang digunakan secara kredibel, transparan, akuntabel, bertanggung jawab dan adil.</label>
                             <div class="radio">
                                 <label>{{ Form::radio('2.1', 4, 0, ['required' => 'true']) }}Program studi memiliki tatapamong yang memungkinkan terlaksananya secara konsisten prinsip tatapamong, dan menjamin penyelenggaraan program studi yang memenuhi 5 aspek berikut:
                                 <ul>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>2.3 &nbsp; Sistem pengelolaan funsional dan operasional program studi mencakup: <i>planning, organizing, staffing, leading, controlling</i> yang efektif dilaksanakan</label>
+                            <label>2.3 &nbsp; Sistem pengelolaan fungsional dan operasional program studi mencakup: <i>planning, organizing, staffing, leading, controlling</i> yang efektif dilaksanakan</label>
                             <div class="radio">
                                 <label>{{ Form::radio('2.3', 4, 0, ['required' => 'true']) }}Sistem pengelolaan funsional dan operasional program studi berjalan sesuai dengan SOP, yang didukung dokumen yang lengkap</label>
                             </div>

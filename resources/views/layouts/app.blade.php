@@ -63,6 +63,22 @@
         .hvr-icon-drop:before {
             content: '\f0c9';
         }
+
+        .modal-size {
+            width: 700px
+        }
+        .modal-text {
+            font-size: 18px;
+        }
+        .modal-text > p {
+            white-space: nowrap;
+            overflow: hidden;
+            width: 670px;
+            animation: type 4s steps(60, end);
+        }
+        @keyframes type{
+            from { width: 0; }
+        }
         @media screen and (max-width: 768px) {
             .display-flex {
                 flex-direction: column;
@@ -136,6 +152,20 @@
         </nav>
 
         @yield('content')
+    </div>
+    {{-- MODAL --}}
+    <div id="warningModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-size">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body modal-text">
+            <p id="content-text"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="backTo">OK</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Scripts -->

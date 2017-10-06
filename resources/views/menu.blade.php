@@ -21,22 +21,6 @@
         #startAsk, #detail, #reset {
             margin-top: 10%;
         }
-        .modal-size {
-            width: 700px
-        }
-        .modal-text {
-            font-size: 18px;
-        }
-        .modal-text > p {
-            white-space: nowrap;
-            overflow: hidden;
-            width: 670px;
-            animation: type 4s steps(60, end);
-        }
-        @keyframes type{
-            from { width: 0; }
-        }
-
         .d-flex {
             display: flex;
             flex-direction: row;
@@ -119,25 +103,11 @@
   </div>
 </div> --}}
 
-<div id="detailModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-size">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-body modal-text">
-        <p>Silahkan isi standar yang belum terlebih dahulu sebelum melihat hasil rincian poin!!!</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 @endsection
 @push('pageJs')
 <script type="text/javascript">
     var theresData = false;
-    var route = '';
+    var route = 'standart1';
     var theresDataCount = 0;
     var totalScore = 0;
 
@@ -149,12 +119,12 @@
                 theresData = true;
                 theresDataCount += 1;
                 totalScore += data[i].data;
-                if (changing) {
+                if (changing && i < 5) {
                     route = data[i + 1].id;
                 }
                 $('#'+data[i].id).append(' <i class="fa fa-check-circle done" aria-hidden="true"></i>');
             } else {
-                charging = false;
+                changing = false;
                 $('#'+data[i].id).append(' <i class="fa fa-times-circle undone" aria-hidden="true"></i>');
             }
         }
@@ -222,8 +192,9 @@
         }
     });
     $('#detail').click(function() {
-        if (!theresData) {
-            $('#detailModal').modal();
+        if (theresDataCount !== 7) {
+            $('#content-text').text('Silahkan isi standar yang belum terlebih dahulu sebelum melihat rincian!!!');
+            $('#warningModal').modal();
         }
     });
 

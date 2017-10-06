@@ -41,7 +41,7 @@
                                     {{ Form::radio('1.1.b', 4, 0, ['required' => 'true']) }}
                                     Strategi pencapaian sasaran:
                                     <ul>
-                                        <li>dengan tahapan waktu yang jelas dan sangat teralistik</li>
+                                        <li>dengan tahapan waktu yang jelas dan sangat realistik</li>
                                         <li>didukung dokumen yang sangat lengkap</li>
                                     </ul>
                                 </label>
@@ -51,7 +51,7 @@
                                     {{ Form::radio('1.1.b', 3) }}
                                     Strategi pencapaian sasaran:
                                     <ul>
-                                        <li>degan tahapan waktu yang jelas, dan realistik</li>
+                                        <li>dengan tahapan waktu yang jelas, dan realistik</li>
                                         <li>didukung dokumen yang lengkap</li>
                                     </ul>
                                 </label>

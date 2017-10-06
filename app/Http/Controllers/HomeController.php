@@ -70,7 +70,7 @@ class HomeController extends Controller
     public function standart3(Request $request)
     {
       $arrVal = [];
-      $rasio = $request['3_1_1a3'] / $request['3_1_1a2'];
+      $rasio = $request['3_1_1a2'] ? $request['3_1_1a3'] / $request['3_1_1a2'] : 0;
       if ($rasio >= 5) {
         $val311a = 4;
       } elseif ($rasio > 1) {
@@ -81,7 +81,7 @@ class HomeController extends Controller
       $arrVal['3_1_1_a'] = $val311a;
       $val311a = $val311a * 1.95;
 
-      $rasio = $request['3_1_1b5'] / $request['3_1_1b4'];
+      $rasio = $request['3_1_1b4'] ? $request['3_1_1b5'] / $request['3_1_1b4'] : 0;
       if ($rasio > 0.95) {
         $val311b = 4;
       } elseif ($rasio > 0.25) {
@@ -92,7 +92,7 @@ class HomeController extends Controller
       $arrVal['3_1_1_b'] = $val311b;
       $val311b = $val311b * 0.65;
 
-      $rasio = $request['3_1_1c6'] / $request['3_1_1c5'];
+      $rasio = $request['3_1_1c5'] ? $request['3_1_1c6'] / $request['3_1_1c5'] : 0;
       if ($rasio <= 0.25) {
         $val311c = 4;
       } elseif ($rasio < 1.25) {
@@ -114,6 +114,8 @@ class HomeController extends Controller
         $val311d = 4 * $ipk - 8;
       } elseif ($ipk <= 2.75 && $ipk >= 2) {
         $val311d = (4 * $ipk - 2) / 3;
+      } else {
+        $val311d = 0;
       }
       $arrVal['3_1_1_d'] = $val311d;
       $val311d = $val311d * 1.30;
@@ -123,7 +125,7 @@ class HomeController extends Controller
       $val312 = $request['3_1_2'] * 0.65;
       $val313 = $request['3_1_3'] * 1.30;
 
-      $rasio = $request['3_1_4af'] / $request['3_1_4ad']; // $rasio == Ktw
+      $rasio = $request['3_1_4ad'] ? $request['3_1_4af'] / $request['3_1_4ad'] : 0; // $rasio == Ktw
       if ($rasio >= 0.5) {
         $val314a = 4;
       } elseif ($rasio < 0.5 && $rasio > 0) {
@@ -134,7 +136,7 @@ class HomeController extends Controller
       $arrVal['3_1_4_a'] = $val314a;
       $val314a = $val314a * 1.30;
 
-      $rasio = ($request['3_1_4ba'] - $request['3_1_4bb'] - $request['3_1_4bc']) / $request['3_1_4ba']; // $rasio = Mdo
+      $rasio = $request['3_1_4ba'] ? ($request['3_1_4ba'] - $request['3_1_4bb'] - $request['3_1_4bc']) / $request['3_1_4ba'] : 0; // $rasio = Mdo
       if ($rasio <= 0.06) {
         $val314b = 4;
       } elseif ($rasio < 0.45) {
@@ -281,7 +283,7 @@ class HomeController extends Controller
           $val432 = 4 * (60 - $kd) / 37;
         } elseif ($kd < 17 && $kd >= 0) {
           $val432 = 4 * $kd / 17;
-        } elseif ($kd >= 60 || $kd < 0) {
+        } elseif ($kd >= 60 || $kd <= 0) {
           $val432 = 0;
         }
       }
@@ -310,7 +312,7 @@ class HomeController extends Controller
         $val435 = 4;
       } elseif ($kd > 0.6) {
         $val435 = ((80 * $kd) - 48) / 7;
-      } elseif ($kd<= 0.6) {
+      } elseif ($kd <= 0.6) {
         $val435 = 0;
       }
       $arrVal['4_3_5'] = $val435;
