@@ -33,15 +33,15 @@
                     <div class="panel-body">
                         {{ Form::open(['url' => route('post_standart5')]) }}
                             <div class="form-group">
-                                <label>5.1.1.a &nbsp; Kelengkapan dan perumusan kompetensi atau struktu kurikulum (harus memuat standar kompetensi lulusan yang terstruktur dalam kompetensi utama, pendukung dan launnya).</label>
+                                <label>5.1.1.a &nbsp; Kelengkapan dan perumusan kompetensi atau struktur kurikulum (harus memuat standar kompetensi lulusan yang terstruktur dalam kompetensi utama, pendukung dan lainnya).</label>
                                 <div class="radio">
-                                    <label>{{ Form::radio('5.1.1a', 4, 0, ['required' => 'true']) }} Kurikulum memuat kompetensi lulusan secara lengkap (utama, pendukung, lainya) yang terumuskan secara sangat jelas</label>
+                                    <label>{{ Form::radio('5.1.1a', 4, 0, ['required' => 'true']) }} Kurikulum memuat kompetensi lulusan secara lengkap (utama, pendukung, lainnya) yang terumuskan secara sangat jelas</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.1.1a', 3) }} Kurikulum memuat kompetensi lulusan secara lengkap (utama, pendukung, lainnya) yang terumus secara jelas</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('5.1.1a', 2) }} Kurikulum memuat kompetensi ukusan secara lengkap (utama, pendukung, lainnya) yang terumuskan secara cukup jelas</label>
+                                    <label>{{ Form::radio('5.1.1a', 2) }} Kurikulum memuat kompetensi lulusan secara lengkap (utama, pendukung, lainnya) yang terumuskan secara cukup jelas</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.1.1a', 1) }} Kurikulum memuat kompetensi lulusan secara lengkap (utama, pendukung, lainnya) namun rumusannya kurang jelas</label>
@@ -92,19 +92,19 @@
                                     <input type="number" name="5.1.2b" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required />
                                 </p>
                                 <p>Jumlah matakuliah yang memiliki bobot tugas
-                                    <input type="number" name="5.1.2bbbt" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required />
+                                    <input type="number" name="5.1.2bbbt" class="form-control s5-inputBox" placeholder="Total Matkul" min="0" max="9999" required />
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label>5.1.2.c &nbsp; Matakuliah yang dilengkapi dengan deskripsi matakuliah, silabus, dan SAP.</label>
                                 <p>Jumlah matkul yang dilengkapi dengan deskripsi matakuliah, silabus, dan SAP
-                                    <input type="number" name="5.1.2c" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required />
+                                    <input type="number" name="5.1.2c" class="form-control s5-inputBox" placeholder="Total Matkul" min="0" max="9999" required />
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label>5.1.3 &nbsp; Fleksibilitas mata kuliah pilihan (Matakuliah yang dilaksanakan tiga tahun terakhir)</label>
                                 <p>Jumlah matakuliah pilihan yang disediakan
-                                    <input type="number" name="5.1.3" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required id="matkul-sedia" onchange="setMax()" /> sks
+                                    <input type="number" name="5.1.3" class="form-control s5-inputBox" placeholder="Total Matkul" min="0" max="9999" required id="matkul-sedia" /> sks
                                 </p>
                                 <p>Jumlah matakuliah pilihan yang harus diambil
                                     <input type="number" name="5.1.3get" class="form-control s5-inputBox" placeholder="Total Matkul" min="1" max="9999" required id="matkul-ambil"/> sks
@@ -114,7 +114,7 @@
                             <div class="form-group">
                                 <label>5.1.4 &nbsp; Substansi praktikum dan pelaksanaan praktikum</label>
                                 <div class="radio">
-                                    <label>{{ Form::radio('5.1.4', 4, 0, ['required' => 'true']) }} Pelaksaan modul praktikum lebih dari cukup (ditambah dengan demonstrasi di laboratorium) di PT sendiri</label>
+                                    <label>{{ Form::radio('5.1.4', 4, 0, ['required' => 'true']) }} Pelaksanaan modul praktikum lebih dari cukup (ditambah dengan demonstrasi di laboratorium) di PT sendiri</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.1.4', 3) }} Pelaksanaan modul praktikum cukup diaksanakan di PT sendiri</label>
@@ -153,14 +153,14 @@
                                     <label>{{ Form::radio('5.2b', 3) }} Pembaharuan kurikulum dilakukan sesuai dengan perkembangan ilmu di bidangnya, tetapi kurang memperhatikan kebutuhan pemangku kepentingan</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('5.2b', 2) }} Pembaharuan hanya menata ulang kurukulum yang sudah ada, tanpa disesuaikan dengan perkembangan</label>
+                                    <label>{{ Form::radio('5.2b', 2) }} Pembaharuan hanya menata ulang kurikulum yang sudah ada, tanpa disesuaikan dengan perkembangan</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.2b', 0) }} Tidak ada pembaharuan kurikulum selama 5 tahun terakhir</label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>5.3.1.a &nbsp; Pelaksanaan pemelajaran memiliki mekanisme untuk memonitor, mengkaji, dan memperbaiki setiap semester dengan memberikan skor jika:
+                                <label>5.3.1.a &nbsp; Pelaksanaan pembelajaran memiliki mekanisme untuk memonitor, mengkaji, dan memperbaiki setiap semester dengan memberikan skor jika:
                                     <ul>
                                         <li>1: Tidak ada monitoring</li>
                                         <li>2: Ada monitoring tetapi tidak ada evaluasi</li>
@@ -230,9 +230,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>5.4.1.a &nbsp; Rata-rata banyaknya mahasiswa per dosen Pembibing Akademik (PA)</label>
+                                <label>5.4.1.a &nbsp; Rata-rata banyaknya mahasiswa per dosen Pembimbing Akademik (PA)</label>
                                 <p>Rata-rata banyak pertemuan/mhs/semester
-                                    <input type="number" name="5.4.1a" class="form-control s5-inputBox" placeholder="Rata-rata" min="1" max="9999" step="0.01" required />
+                                    <input type="number" name="5.4.1a" class="form-control s5-inputBox" placeholder="Rata-rata" min="0" max="9999" step="0.01" required />
                                 </p>
                             </div>
                             <div class="form-group">
@@ -244,7 +244,7 @@
                                     <label>{{ Form::radio('5.4.1b', 3) }} Perwalian dilakukan oleh seluruh dosen PA tetapi tidak seluruhnya menurut panduan tertulis</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('5.4.1b', 2) }} Perkalian dilakukan oleh sebagian dosen PA dan sebagian oleh Tenaga Administrasi</label>
+                                    <label>{{ Form::radio('5.4.1b', 2) }} Perwalian dilakukan oleh sebagian dosen PA dan sebagian oleh Tenaga Administrasi</label>
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.4.1b', 1) }} Perwalian tidak dilakukan oleh dosen PA tetapi oleh Tenaga Administrasi</label>
@@ -321,7 +321,7 @@
                             </div>
                             <div class="form-group">
                                 <label>5.5.2 &nbsp; Rata-rata lama penyelesaian tugas akhir/skripsi pada tiga tahun terakhir:
-                                    <input type="number" name="5.5.2" class="form-control s5-inputBox w-50"  min="1" max="9999" step="0.01" required />
+                                    <input type="number" name="5.5.2" class="form-control s5-inputBox w-50"  min="0" max="9999" step="0.01" required />
                                     bulan. <br/>
                                     (Menurut kuriukulum tugas akhir direncanakan
                                         <input type="number" name="5.5.2sem" class="form-control s5-inputBox w-50"  min="1" max="2" required />
@@ -415,10 +415,10 @@
                             <div class="form-group">
                                 <label>5.7.5 &nbsp; Pengembangan perilaku kecendekiawanan dalam bentuk kegiatan antara lain dapat berupa:
                                 <ul>
-                                    <li>Kegiatan penanggulagan kemiskinan</li>
+                                    <li>Kegiatan penanggulangan kemiskinan</li>
                                     <li>Pelestarian lingkungan</li>
                                     <li>Peningkatan kesejahteraan masyarakat</li>
-                                    <li>Kegiatan penanggulagan masalah ekonomi, politik, sosial, budaya, dan lingkungan lainnya</li>
+                                    <li>Kegiatan penanggulangan masalah ekonomi, politik, sosial, budaya, dan lingkungan lainnya</li>
                                 </ul></label>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.7.5', 4, 0, ['required' => 'true']) }} Kegiatan yang dilakukan sangat menunjang pengembangan perilaku kecendekiawanan</label>

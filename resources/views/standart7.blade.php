@@ -29,21 +29,6 @@
             width: 12.5%;
             vertical-align: middle !important;
         }
-        .modal-size {
-            width: 700px
-        }
-        .modal-text {
-            font-size: 18px;
-        }
-        .modal-text > p {
-            white-space: nowrap;
-            overflow: hidden;
-            width: 670px;
-            animation: type 4s steps(60, end);
-        }
-        @keyframes type{
-            from { width: 0; }
-        }
     </style>
 @endpush
 @section('content')
@@ -64,19 +49,19 @@
                             <div class="form-group">
                                 <label>7.1.1 &nbsp; Jumlah penelitian yang sesuai dengan bidang keilmuan PS, yang dilakukan oleh dosen tetap yang bidang keahliannya sama dengan PS selama 3 tahun.</label>
                                 <p>Jumlah penelitian dengan biaya luar negeri yang sesuai bidang ilmu
-                                    <input type="number" name="7.1.1a" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1" required>
+                                    <input type="number" name="7.1.1a" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
                                 </p>
                                 <p>Jumlah penelitian dengan biaya luar yang sesuai bidang ilmu
-                                    <input type="number" name="7.1.1b" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1" required>
+                                    <input type="number" name="7.1.1b" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
                                 </p>
                                 <p>Jumlah penelitian dengan biaya dari PT/sendiri yang sesuai bidang ilmu
-                                    <input type="number" name="7.1.1c" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1" required>
+                                    <input type="number" name="7.1.1c" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0" required>
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label>7.1.2 &nbsp; Keterlibatan mahasiswa yang melakukan tugas akhir dalam penelitian dosen.</label>
                                 <p>Banyaknya mahasiswa Program Studi yang ikut serta dalam penelitian dosen adalah
-                                    <input type="number" name="7.1.2ikt" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1">
+                                    <input type="number" name="7.1.2ikt" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="0">
                                     orang, dari 
                                     <input type="number" name="7.1.2tot" class="form-control s7-inputBox w-75" placeholder="Jumlah" min="1">
                                     mahasiswa yang melakukan tugas akhir memalui skripsi.
@@ -168,26 +153,16 @@
                                 </div>
                             </div>
                             <div id="hidden"></div>
-                            {{ Form::submit('LIAT TOTAL SKOR', ['class' => 'btn btn-block btn-success']) }}
+                            {{ Form::submit('LIHAT TOTAL SKOR', ['class' => 'btn btn-block btn-success']) }}
                         {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="warningModal" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-size">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-body modal-text">
-            <p>Data standar 4 kosong, perlu di isi sebelum melanjutkan pengisian!!!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" id="backTo">OK</button>
-          </div>
-        </div>
-      </div>
-    </div>
+@endsection
+
+@push('pageJs')
     <script type="text/javascript">
         var hasil = {!! json_encode($hasil) !!}
         var value = {!! json_encode($value) !!}
@@ -205,19 +180,21 @@
         })
 
         function appendData() {
-            var dataS4 = JSON.parse(localStorage.getItem('value4'));
+            var dataS4 = localStorage.value4;
             if (!dataS4) {
                 $('#btn_submit').hide();
+                $('#content-text').text('Data standar 4 kosong, perlu di isi sebelum melanjutkan pengisian!!!');
                 return $('#warningModal').modal();
                 // alert('Standart 4 perlu di isi terlebih dahulu!!');
                 // return window.location.href = '{{ route("standart4") }}';
             } else {
+                dataS4 = JSON.parse(dataS4);
                 setTimeout(function() {
                     $('#loader-page').css('display', 'none');
                     $('#container-st7').css('display', 'block');
                 }, 500);
-                $('#hidden').append('<input type="hidden" name="dosen" value="'+ dataS4['dosen'] +'"/>');
+                $('#hidden').append('<input type="hidden" name="dosen" value="'+ dataS4.dosen +'"/>');
             }
         }
     </script>
-@endsection
+@endpush

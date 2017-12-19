@@ -75,14 +75,14 @@
                             <div class="form-group">
                                 <label>6.2.1 &nbsp; Pengunaan dana untuk operasional (pendidikan, penelitian, pengabdian pada masyarakat, termasuk gaji dan upah).</label>
                                 <p>jumlah dana operasional/mahasiswa/tahun
-                                    <input type="number" name="6.2.1" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required onchange="confirmation('operasional')" id="operasional" />
+                                    <input type="number" name="6.2.1" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="0" step="0.01" required onchange="confirmation('operasional')" id="operasional" />
                                     Juta
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label>6.2.2 &nbsp; Dana penelitian dalam tiga tahun terakhir</label>
                                 <p>Rata-rata dana penelitian/dosen tetap/tahun
-                                    <input type="number" name="6.2.2" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required onchange="confirmation('penelitian')" id="penelitian" />
+                                    <input type="number" name="6.2.2" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="0" step="0.01" required onchange="confirmation('penelitian')" id="penelitian" />
                                     Juta<br/>
                                     <small><i>Note: Di luar dana penelitian/penulisan skripsi, tesis, dan disertasi sebagai bagian dari studi lanjut.</i></small>
                                 </p>
@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <label>6.2.3 &nbsp; Dana yang diperoleh dalam rangka pelayanan/pengabdian kepada masyarakat dalam tiga tahun terakhir</label>
                                 <p>Jumlah dana
-                                    <input type="number" name="6.2.3" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="1" step="0.01" required onchange="confirmation('pengabdian')" id="pengabdian" />   
+                                    <input type="number" name="6.2.3" class="form-control s6-inputBox" placeholder="Jumlah Dana" min="0" step="0.01" required onchange="confirmation('pengabdian')" id="pengabdian" />   
                                     Juta
                                 </p>
                             </div>
@@ -145,13 +145,13 @@
                             <div class="form-group">
                                 <label>6.4.1.a &nbsp; Bahan pustaka berupa buku teks</label>
                                 <p>Jumlah judul
-                                    <input type="number" name="6.4.1a" class="form-control s6-inputBox w-75" placeholder="Jumlah" min="1" required />
+                                    <input type="number" name="6.4.1a" class="form-control s6-inputBox w-75" placeholder="Jumlah" min="0" required />
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label>6.4.1.b &nbsp; Bahan pustaka berupa disertasi/tesis/skripsi/tugas akhir</label>
                                 <p>Jumlah judul
-                                    <input type="number" name="6.4.1b" class="form-control s6-inputBox w-75" placeholder="Jumlah" min="1" required />
+                                    <input type="number" name="6.4.1b" class="form-control s6-inputBox w-75" placeholder="Jumlah" min="0" required />
                                 </p>
                             </div>
                             <div class="form-group">
@@ -183,17 +183,11 @@
                                 <div class="radio">
                                     <label>{{ Form::radio('6.4.1d', 2) }} Tidak ad jurnal yang nomornya lengkap</label>
                                 </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('6.4.1d', 1) }} Tidak ada nilai</label>
-                                </div>
-                                <div class="radio">
-                                    <label>{{ Form::radio('6.4.1d', 0) }} Tidak ada nilai</label>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label>6.4.1.e &nbsp; Bahan pustaka berupa prosiding seminar dalam tiga tahun terakhir</label>
                                 <p>Jumlah prosiding seminar
-                                    <input type="number" name="6.4.1e" class="form-control s6-inputBox w-75" placeholder="Jumlah" min="1" required />
+                                    <input type="number" name="6.4.1e" class="form-control s6-inputBox w-75" placeholder="Jumlah" min="0" required />
                                 </p>
                             </div>
                             <div class="form-group">
@@ -241,7 +235,7 @@
                                     <label>{{ Form::radio('6.5.1', 2) }} Sebagian dengan komputer, namun tidak terhubung dengan jaringan luas/internet. Kebanyakan <i>software</i> yang digunakan belum berlisensi. Koleksi perpustakaan dikelola dengan komputer yang tidak terhubung jaringan</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('6.5.1', 1) }} Proses pembelajaran dilakukan secara manual. engelolaan koleksi perpustakaan menggunakan komputer <i>stand alone,</i> atau secara manual</label>
+                                    <label>{{ Form::radio('6.5.1', 1) }} Proses pembelajaran dilakukan secara manual. pengelolaan koleksi perpustakaan menggunakan komputer <i>stand alone,</i> atau secara manual</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -293,10 +287,10 @@
                 $('#table-body').append(
                     `<tr>
                         <td>`+test[i].text+`</td>
-                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[0] +`')"><input id="`+ test[i].id[0] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[0] +`')" value=1 /></td>
-                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[1] +`')"><input id="`+ test[i].id[1] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[1] +`')" value=1 /></td>
-                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[2] +`')"><input id="`+ test[i].id[2] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[2] +`')" value=1 /></td>
-                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[3] +`')"><input id="`+ test[i].id[3] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[3] +`')" value=1 /></td>
+                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[0] +`')"><input id="`+ test[i].id[0] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[0] +`')" value="1" /></td>
+                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[1] +`')"><input id="`+ test[i].id[1] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[1] +`')" value="1" /></td>
+                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[2] +`')"><input id="`+ test[i].id[2] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[2] +`')" value="1" /></td>
+                        <td class="text-center pointer" onclick="checkIt('`+ test[i].id[3] +`')"><input id="`+ test[i].id[3] +`" type="checkbox" name="`+ test[i].name +`" onclick="checkIt('`+ test[i].id[3] +`')" value="1" /></td>
                     </tr>`
                 );
             }
