@@ -168,6 +168,21 @@
       </div>
     </div>
 
+    <div id="confirmationModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-size">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body modal-text">
+            <p id="content-text2"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="cfrm-yes">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/popper.min.js') }}"></script> --}}

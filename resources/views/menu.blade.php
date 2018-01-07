@@ -79,7 +79,7 @@
         </div>
         <div class="col-md-2 col-md-offset-5" id="button-container">
         	<a class="btn btn-primary btn-block flat button-in hvr-float-shadow" id="startAsk">Mulai simulasi</a>
-            <a class="btn btn-info btn-block flat button-in hvr-float-shadow" id="detail"> Rincian </a>
+            {{-- <a class="btn btn-info btn-block flat button-in hvr-float-shadow" id="detail"> Rincian </a> --}}
         </div>
     </div>
 </div>
@@ -137,12 +137,18 @@
             $('#middle-div').append(`
                 <div>
                     <h3 class="animated flipInY">Total skor dari simulasi akreditasi adalah</h3>
-                    <h2 class="animated zoomInUp" style="animation-duration: 2.5s"><strong>`+totalScore+`</strong></h2>
+                    <h2 class="animated zoomInUp" style="animation-duration: 2.5s"><strong>`+ totalScore.toFixed(0) +`</strong></h2>
                 </div>
                 `);
             $('#startAsk').remove();
-            $('#button-container').append('<a class="btn btn-danger btn-block flat button-in hvr-float-shadow" onclick="reset()" id="reset">Reset skor</a>');
+            $('#button-container').append('<a class="btn btn-danger btn-block flat button-in hvr-float-shadow" onclick="confirm()" id="reset">Reset skor</a>');
         }
+    }
+
+    function confirm() {
+        $('#content-text2').text('Apakah anda yakin ingin mereset nilai???');
+        $('#cfrm-yes').attr('onclick', 'reset()');
+        return $('#confirmationModal').modal();
     }
 
     function reset() {
