@@ -58,7 +58,9 @@
     </style>
 @endpush
 @section('content')
-<div class="container">
+<div class="loader" id="loader-page"></div>
+
+<div class="container" style="display: none;" id="container-menu">
     <div class="row top-row">
         <div class="col-md-10 col-md-offset-1 text-center">
         	<div>
@@ -78,22 +80,26 @@
             </div>
         </div>
 
-        {!! Form::open(['url' => route('start_simulation'), 'method' => 'POST']) !!}
-            <div class="col-md-6 col-md-offset-3">
-                <div class="form-group">
-                    {{ Form::select('prodi', $prodi->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Pilih Program Studi', 'required' => true]) }}
+        <div id="mulaiSimulasi" style="display: block">
+            {!! Form::open(['url' => route('start_simulation'), 'method' => 'POST']) !!}
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="form-group">
+                        {{ Form::select('prodi', $prodi->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Pilih Program Studi', 'required' => true]) }}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::date('date', Carbon::now(), ['class' => 'form-control']) }}
+                    </div>
                 </div>
-                <div class="form-group">
-                    {{ Form::date('date', Carbon::now(), ['class' => 'form-control']) }}
+                <div class="col-md-2 col-md-offset-5" id="button-container">
+                    {{ Form::submit('Mulai Simulasi', ['class' => 'btn btn-primary btn-block flat button-in hvr-float-shadow']) }}
                 </div>
-            </div>
+            {!! Form::close() !!}
+        </div>
+        <div id="lanjutSimulasi" style="display: none">
             <div class="col-md-2 col-md-offset-5" id="button-container">
-                {{ Form::submit('Mulai Simulasi', ['class' => 'btn btn-primary btn-block flat button-in hvr-float-shadow']) }}
+            	<a class="btn btn-primary btn-block flat button-in hvr-float-shadow" id="startAsk">Lanjut simulasi</a>
+                {{-- <a class="btn btn-info btn-block flat button-in hvr-float-shadow" id="detail"> Rincian </a> --}}
             </div>
-        {!! Form::close() !!}
-        <div class="col-md-2 col-md-offset-5" id="button-container">
-        	<a class="btn btn-primary btn-block flat button-in hvr-float-shadow" id="startAsk">Mulai simulasi</a>
-            {{-- <a class="btn btn-info btn-block flat button-in hvr-float-shadow" id="detail"> Rincian </a> --}}
         </div>
     </div>
 </div>
@@ -124,6 +130,19 @@
     var route = 'standart1';
     var theresDataCount = 0;
     var totalScore = 0;
+    var displayBtn = JSON.parse(localStorage.getItem('accreditation_id'));
+
+    if (displayBtn) {
+        $('#mulaiSimulasi').css('display', 'none');
+        $('#lanjutSimulasi').css('display', 'block');
+    } else {
+        $('#mulaiSimulasi').css('display', 'block');
+        $('#lanjutSimulasi').css('display', 'none');
+    }
+    setTimeout(function() {
+        $('#loader-page').css('display', 'none');
+        $('#container-menu').css('display', 'block');
+    }, 100);
 
     function init(data) {
         var changing = true;
@@ -141,10 +160,6 @@
                 changing = false;
                 $('#'+data[i].id).append(' <i class="fa fa-times-circle undone" aria-hidden="true"></i>');
             }
-        }
-
-        if (theresData) {
-            $('#startAsk').text('Lanjut simulasi');
         }
 
         if (theresDataCount == 7) {

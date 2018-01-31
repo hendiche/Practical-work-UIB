@@ -22,7 +22,7 @@ class DbAkreditasi extends Migration
         Schema::create('accreditations', function($table) {
             $table->increments('id');
             $table->date('accreditation_date');
-            $table->integer('total_score')->default(0);
+            $table->decimal('total_score', 8, 4)->unsigned()->default(0);
             $table->integer('prodi_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
@@ -41,7 +41,7 @@ class DbAkreditasi extends Migration
 
             $table->foreign('accreditation_id')->references('id')->on('accreditations');
 
-            $table->integer('score');
+            $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
         });
 
@@ -57,7 +57,7 @@ class DbAkreditasi extends Migration
 
             $table->foreign('accreditation_id')->references('id')->on('accreditations');
 
-            $table->integer('score');
+            $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
         });
 
@@ -84,7 +84,7 @@ class DbAkreditasi extends Migration
 
             $table->foreign('accreditation_id')->references('id')->on('accreditations');
 
-            $table->integer('score');
+            $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
         });
 
@@ -119,7 +119,7 @@ class DbAkreditasi extends Migration
 
             $table->foreign('accreditation_id')->references('id')->on('accreditations');
 
-            $table->integer('score');
+            $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
         });
 
@@ -157,7 +157,7 @@ class DbAkreditasi extends Migration
 
             $table->foreign('accreditation_id')->references('id')->on('accreditations');
 
-            $table->integer('score');
+            $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
         });
 
@@ -183,7 +183,7 @@ class DbAkreditasi extends Migration
 
             $table->foreign('accreditation_id')->references('id')->on('accreditations');
 
-            $table->integer('score');
+            $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
         });
 
@@ -201,7 +201,7 @@ class DbAkreditasi extends Migration
 
             $table->foreign('accreditation_id')->references('id')->on('accreditations');
 
-            $table->integer('score');
+            $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
         });
     }

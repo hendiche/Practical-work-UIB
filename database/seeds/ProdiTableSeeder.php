@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Program_study;
+use App\Models\ProgramStudy;
 
 class ProdiTableSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class ProdiTableSeeder extends Seeder
      */
     public function run()
     {
-        $prodi = new Program_study();
+        $prodi = new ProgramStudy();
         $prodi->name = 'Sistem Informasi';
         $prodi->save();
     }

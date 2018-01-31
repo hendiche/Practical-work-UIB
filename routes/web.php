@@ -25,7 +25,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/menu', 'HomeController@menu')->name('menu');
 	Route::post('/start', 'HomeController@start')->name('start_simulation');
-	
+
 	Route::get('/standart1', 'HomeController@toStandart1')->name('standart1');
 	Route::post('/standart1', 'HomeController@standart1')->name('post_standart1');
 

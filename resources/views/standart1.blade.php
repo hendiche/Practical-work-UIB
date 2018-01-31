@@ -93,7 +93,7 @@
                                 <label>{{ Form::radio('1.2', 1) }}Tidak dipahami oleh seluruh sivitas akademika dan tenaga kependidikan</label>
                             </div>
                         </div>
-
+                        <div id="hidden"></div>
                         {{-- {{ Form::submit('LANJUT KE STANDAR 2', ['class' => 'btn btn-block btn-success', 'id' => 'st1-submit', 'style' => 'visibility:hidden']) }} --}}
                         {{ Form::submit('LANJUT KE STANDAR 2', ['class' => 'btn btn-block btn-success']) }}
 
@@ -106,13 +106,18 @@
     <script type="text/javascript">
         var hasil = {!! json_encode($hasil) !!}
         var value = {!! json_encode($value) !!}
+        var akreditasi_id = {!! json_encode($acc_id) !!}
         
-
+        
+        if (akreditasi_id) {
+            localStorage.accreditation_id = akreditasi_id;
+        }
         if (hasil || value) {
             localStorage.nilaiStandart1 = hasil;
             localStorage.setItem('value1', JSON.stringify(value));
             window.location.href = '{{ route("standart2") }}';
         } else {
+            $('#hidden').append('<input type="hidden" name="accreditation_id" value="'+ akreditasi_id +'"/>');
             setTimeout(function() {
                 $('#loader-page').css('display', 'none');
                 $('#container-st1').css('display', 'block');

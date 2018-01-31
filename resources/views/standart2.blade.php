@@ -167,6 +167,7 @@
                                 <label>{{ Form::radio('2.6', 1) }}Ada bukti hanya 1 usaha yang dilakukan</label>
                             </div>
                         </div>
+                        <div id="hidden"></div>
                         {{ Form::submit('LANJUT KE STANDAR 3', ['class' => 'btn btn-block btn-success']) }}
                         {!! Form::close() !!}
     				</div>
@@ -183,6 +184,8 @@
             localStorage.setItem('value2', JSON.stringify(value));
             window.location.href = '{{ route("standart3") }}';
         } else {
+            var akreditasi_id = localStorage.accreditation_id;
+            $('#hidden').append('<input type="hidden" name="accreditation_id" value="'+ akreditasi_id +'"/>');
             setTimeout(function() {
                 $('#loader-page').css('display', 'none');
                 $('#container-st2').css('display', 'block');

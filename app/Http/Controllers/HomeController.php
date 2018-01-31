@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Program_study;
+use App\Models\ProgramStudy;
 use App\Models\Accreditation;
 use Auth;
+use App\Models\StandartFirst;
+use App\Models\StandartSecond;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,7 @@ class HomeController extends Controller
     }
 
     public function menu() {
-      return view('menu')->with('prodi', Program_study::get());
+      return view('menu')->with('prodi', ProgramStudy::get());
     }
 
     public function start(Request $request)
@@ -36,23 +38,35 @@ class HomeController extends Controller
       $akreditasi->prodi_id = $request->prodi;
       $akreditasi->user_id = Auth::id();
       $akreditasi->save();
-      return view('standart1')->with('hasil', '')->with('value', '');
+      return view('standart1')->with('hasil', '')->with('value', '')
+                              ->with('acc_id', $akreditasi->id);
     }
 
     public function toStandart1()
     {
-        return view('standart1')->with('hasil', '')->with('value', '');
+      return view('standart1')->with('hasil', '')->with('value', '')
+                              ->with('acc_id', '');
     }
 
     public function standart1(Request $request)
     {
-        $arrVal = $request->except(['_token']);
+        $arrVal = $request->except(['_token', 'accreditation_id']);
         $val11a = $request['1_1_a'] * 1.04;
         $val11b = $request['1_1_b'] * 1.04;
         $val12 = $request['1_2'] * 1.04;
 
         $total = $val11a + $val11b + $val12;
-        return view('standart1')->with('hasil', $total)->with('value', $arrVal);
+
+        $insert = new StandartFirst();
+        $insert->val11a = $request['1_1_a'];
+        $insert->val11b = $request['1_1_b'];
+        $insert->val12 = $request['1_2'];
+        $insert->accreditation_id = $request->accreditation_id;
+        $insert->score = $total;
+        $insert->save();
+
+        return view('standart1')->with('hasil', $total)->with('value', $arrVal)
+                                ->with('acc_id', '');
         // return redirect('/standart2')->with('hasil', $total);
     }
 
@@ -63,7 +77,7 @@ class HomeController extends Controller
 
     public function standart2(Request $request)
     {
-        $arrVal = $request->except(['_token']);
+        $arrVal = $request->except(['_token', 'accreditation_id']);
         $val21 = $request['2_1'] * 1.39;
         $val22 = $request['2_2'] * 0.69;
         $val23 = $request['2_3'] * 1.39;
@@ -72,6 +86,18 @@ class HomeController extends Controller
         $val26 = $request['2_6'] * 0.69;
 
         $total = $val21 + $val22 + $val23 + $val24 + $val25 + $val26;
+
+        $insert = new StandartSecond();
+        $insert->val21 = $request['2_1'];
+        $insert->val22 = $request['2_2'];
+        $insert->val23 = $request['2_3'];
+        $insert->val24 = $request['2_4'];
+        $insert->val25 = $request['2_5'];
+        $insert->val26 = $request['2_6'];
+        $insert->accreditation_id = $request->accreditation_id;
+        $insert->score = $total;
+        $insert->save();
+
         return view('standart2')->with('hasil', $total)->with('value', $arrVal);
     }
 
