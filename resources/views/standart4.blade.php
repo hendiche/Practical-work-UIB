@@ -326,16 +326,16 @@
                             <label>4.6.1.b &nbsp; Jumlah Laboran, teknisi, operator, <i>Programmer</i></label>
                             <div class="form-group">
                                 <div class="radio">
-                                    <label>{{ Form::radio('4.6.2b', 4, 0, ['required' => 'true']) }} Jumlah cukup dan sangat baik kegiatannya</label>
+                                    <label>{{ Form::radio('4.6.1b', 4, 0, ['required' => 'true']) }} Jumlah cukup dan sangat baik kegiatannya</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('4.6.2b', 3) }} Jumlah cukup dan memadai kegiatannya</label>
+                                    <label>{{ Form::radio('4.6.1b', 3) }} Jumlah cukup dan memadai kegiatannya</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('4.6.2b', 2) }} Cukup dalam jumlah dan kualifikasi tetapi mutu kerjanya sedang-sedang saja</label>
+                                    <label>{{ Form::radio('4.6.1b', 2) }} Cukup dalam jumlah dan kualifikasi tetapi mutu kerjanya sedang-sedang saja</label>
                                 </div>
                                 <div class="radio">
-                                    <label>{{ Form::radio('4.6.2b', 1) }} Kurang dalam jumlah atau terlalu banyak sehingga kurang kegiatannya</label>
+                                    <label>{{ Form::radio('4.6.1b', 1) }} Kurang dalam jumlah atau terlalu banyak sehingga kurang kegiatannya</label>
                                 </div>
                             </div>
                             <label>4.6.1.c &nbsp; Jumlah tenaga administrasi</label>

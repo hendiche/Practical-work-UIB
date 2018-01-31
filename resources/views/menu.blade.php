@@ -77,6 +77,20 @@
                 <div class="hvr-glow" id="standart7">Standar 7</div>
             </div>
         </div>
+
+        {!! Form::open(['url' => route('start_simulation'), 'method' => 'POST']) !!}
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+                    {{ Form::select('prodi', $prodi->pluck('name', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Pilih Program Studi', 'required' => true]) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::date('date', Carbon::now(), ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="col-md-2 col-md-offset-5" id="button-container">
+                {{ Form::submit('Mulai Simulasi', ['class' => 'btn btn-primary btn-block flat button-in hvr-float-shadow']) }}
+            </div>
+        {!! Form::close() !!}
         <div class="col-md-2 col-md-offset-5" id="button-container">
         	<a class="btn btn-primary btn-block flat button-in hvr-float-shadow" id="startAsk">Mulai simulasi</a>
             {{-- <a class="btn btn-info btn-block flat button-in hvr-float-shadow" id="detail"> Rincian </a> --}}

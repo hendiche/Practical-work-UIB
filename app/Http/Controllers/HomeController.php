@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Program_study;
+use App\Models\Accreditation;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,7 +26,17 @@ class HomeController extends Controller
     }
 
     public function menu() {
-      return view('menu');
+      return view('menu')->with('prodi', Program_study::get());
+    }
+
+    public function start(Request $request)
+    {
+      $akreditasi = new Accreditation();
+      $akreditasi->accreditation_date = $request->date;
+      $akreditasi->prodi_id = $request->prodi;
+      $akreditasi->user_id = Auth::id();
+      $akreditasi->save();
+      return view('standart1')->with('hasil', '')->with('value', '');
     }
 
     public function toStandart1()
@@ -391,8 +404,8 @@ class HomeController extends Controller
       $arrVal['4_6_1a'] = $val461a;
       $val461a = $val461a * 0.72;
 
-      $arrVal['4_6_2b'] = $request['4_6_2b'];
-      $val461b = $request['4_6_2b'] * 0.72;
+      $arrVal['4_6_1b'] = $request['4_6_1b'];
+      $val461b = $request['4_6_1b'] * 0.72;
 
       $kd = ((4 * $request['4_6_1cx1']) + (3 * $request['4_6_1cx2']) + (2 * $request['4_6_1cx3']) + $request['4_6_1cx4']) / 4; //$kd == D
       if ($kd >= 4) {
