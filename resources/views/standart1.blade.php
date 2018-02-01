@@ -107,16 +107,24 @@
         var hasil = {!! json_encode($hasil) !!}
         var value = {!! json_encode($value) !!}
         var akreditasi_id = {!! json_encode($acc_id) !!}
-        
+        var prodi_name = {!! json_encode($prodi_name) !!}
+        var akreditasi_date = {!! json_encode($acc_date) !!}        
         
         if (akreditasi_id) {
             localStorage.accreditation_id = akreditasi_id;
+        }
+        if (prodi_name) {
+            localStorage.prodi_name = prodi_name;
+        }
+        if (akreditasi_date) {
+            localStorage.accreditation_date = akreditasi_date;
         }
         if (hasil || value) {
             localStorage.nilaiStandart1 = hasil;
             localStorage.setItem('value1', JSON.stringify(value));
             window.location.href = '{{ route("standart2") }}';
         } else {
+            var akreditasi_id = localStorage.accreditation_id;
             $('#hidden').append('<input type="hidden" name="accreditation_id" value="'+ akreditasi_id +'"/>');
             setTimeout(function() {
                 $('#loader-page').css('display', 'none');

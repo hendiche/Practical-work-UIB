@@ -25,6 +25,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/menu', 'HomeController@menu')->name('menu');
 	Route::post('/start', 'HomeController@start')->name('start_simulation');
+	Route::get('/list', 'HomeController@list')->name('list');
+	Route::get('/view/{id}', 'HomeController@view')->name('view');
 
 	Route::get('/standart1', 'HomeController@toStandart1')->name('standart1');
 	Route::post('/standart1', 'HomeController@standart1')->name('post_standart1');
@@ -46,4 +48,24 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/standart7', 'HomeController@toStandart7')->name('standart7');
 	Route::post('/standart7', 'HomeController@standart7')->name('post_standart7');
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
+	Route::get('/index', 'AdminController@index')->name('admin.index');
+	Route::post('/accreditation/delete', 'AdminController@destroyAccreditation')->name('admin.accreditation.destroy');
+
+	Route::get('/user', 'AdminController@user')->name('admin.user');
+	Route::get('/user/create', 'AdminController@createUser')->name('admin.user.create');
+	Route::post('/user', 'AdminController@storeUser')->name('admin.user.store');
+	Route::post('/user/delete', 'AdminController@destroyUser')->name('admin.user.destroy');
+
+	Route::get('/role', 'AdminController@role')->name('admin.role');
+	Route::get('/role/create', 'AdminController@createRole')->name('admin.role.create');
+	Route::post('/role', 'AdminController@storeRole')->name('admin.role.store');
+	Route::post('/role/delete', 'AdminController@destroyRole')->name('admin.role.destroy');
+
+	Route::get('/program_study', 'AdminController@prodi')->name('admin.prodi');
+	Route::get('/program_study/create', 'AdminController@createProdi')->name('admin.prodi.create');
+	Route::post('/program_study', 'AdminController@storeProdi')->name('admin.prodi.store');
+	Route::post('/program_study/delete', 'AdminController@destroyProdi')->name('admin.prodi.destroy');
 });

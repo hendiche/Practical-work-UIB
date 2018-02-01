@@ -189,6 +189,8 @@
                 // return window.location.href = '{{ route("standart4") }}';
             } else {
                 dataS4 = JSON.parse(dataS4);
+                var akreditasi_id = localStorage.accreditation_id;
+                $('#hidden').append('<input type="hidden" name="accreditation_id" value="'+ akreditasi_id +'"/>');
                 setTimeout(function() {
                     $('#loader-page').css('display', 'none');
                     $('#container-st7').css('display', 'block');

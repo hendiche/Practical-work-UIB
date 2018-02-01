@@ -3,9 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\StandartFirst;
-use App\Models\StandartSecond;
-use App\Models\StandartThird;
+use App\Models\Accreditation;
 
 class ProgramStudy extends Model
 {
@@ -17,18 +15,8 @@ class ProgramStudy extends Model
     	'created_at', 'updated_at'
     ];
 
-    public function standartFirst()
+    public function accreditations()
     {
-    	return $this->hasOne(StandartFirst::class);
-    }
-
-    public function standartSecond()
-    {
-    	return $this->hasOne(StandartSecond::class);
-    }
-
-    public function standartThird()
-    {
-    	return $this->hasOne(StandartThird::class);
+    	return $this->hasMany(Accreditation::class);
     }
 }

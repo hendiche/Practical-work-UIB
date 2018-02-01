@@ -69,6 +69,7 @@
         </div>
         <div class="col-md-12 text-center bot-col" id="middle-div">
             <h2>Status pengisian</h2>
+            <div id="status"></div>
             <div class="d-flex">
                 <div class="hvr-glow" id="standart1">Standar 1</div>
                 <div class="hvr-glow" id="standart2">Standar 2</div>
@@ -90,7 +91,7 @@
                         {{ Form::date('date', Carbon::now(), ['class' => 'form-control']) }}
                     </div>
                 </div>
-                <div class="col-md-2 col-md-offset-5" id="button-container">
+                <div class="col-md-2 col-md-offset-5">
                     {{ Form::submit('Mulai Simulasi', ['class' => 'btn btn-primary btn-block flat button-in hvr-float-shadow']) }}
                 </div>
             {!! Form::close() !!}
@@ -98,7 +99,7 @@
         <div id="lanjutSimulasi" style="display: none">
             <div class="col-md-2 col-md-offset-5" id="button-container">
             	<a class="btn btn-primary btn-block flat button-in hvr-float-shadow" id="startAsk">Lanjut simulasi</a>
-                {{-- <a class="btn btn-info btn-block flat button-in hvr-float-shadow" id="detail"> Rincian </a> --}}
+                <a href="{{ route('list') }}" class="btn btn-info btn-block flat button-in hvr-float-shadow" id="detail"> Rincian </a>
             </div>
         </div>
     </div>
@@ -131,7 +132,15 @@
     var theresDataCount = 0;
     var totalScore = 0;
     var displayBtn = JSON.parse(localStorage.getItem('accreditation_id'));
+    var prodi = localStorage.getItem('prodi_name');
+    var accDate = localStorage.getItem('accreditation_date');
 
+    if (prodi) {
+        $('#status').append('<h4>Program Studi : '+ prodi +'</h4>');
+    }
+    if (accDate) {
+        $('#status').append('<h4>Tanggal : '+ accDate +'</h4>');
+    }
     if (displayBtn) {
         $('#mulaiSimulasi').css('display', 'none');
         $('#lanjutSimulasi').css('display', 'block');
@@ -152,9 +161,10 @@
                 theresData = true;
                 theresDataCount += 1;
                 totalScore += data[i].data;
-                if (changing && i < 5) {
+                if (changing && i < 6) {
                     route = data[i + 1].id;
                 }
+
                 $('#'+data[i].id).append(' <i class="fa fa-check-circle done" aria-hidden="true"></i>');
             } else {
                 changing = false;
@@ -226,12 +236,12 @@
             window.location.href = '{{ route('standart1') }}';
         }
     });
-    $('#detail').click(function() {
-        if (theresDataCount !== 7) {
-            $('#content-text').text('Silahkan isi standar yang belum terlebih dahulu sebelum melihat rincian!!!');
-            $('#warningModal').modal();
-        }
-    });
+    // $('#detail').click(function() {
+    //     if (theresDataCount !== 7) {
+    //         $('#content-text').text('Silahkan isi standar yang belum terlebih dahulu sebelum melihat rincian!!!');
+    //         $('#warningModal').modal();
+    //     }
+    // });
 
     init(allData);
 </script>

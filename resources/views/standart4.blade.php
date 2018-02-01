@@ -373,6 +373,7 @@
                                     <label>{{ Form::radio('4.6.2', 1) }} Tidak ada upaya pengembangan, padahal kualifikasi dan kompetensi tenaga kependidikan relatif masih kurang</label>
                                 </div>
                             </div>
+                            <div id="hidden"></div>
                             {{ Form::submit('LANJUT KE STANDAR 5', ['class' => 'btn btn-block btn-success', 'id' => 'btn_submit']) }}
                             {{-- <a href="{{ route('standart5') }}"> > </a> --}}
                         {{ Form::close() }}
@@ -394,6 +395,8 @@
             localStorage.setItem('value4', JSON.stringify(value));
             window.location.href = '{{ route("standart5") }}';
         } else {
+            var akreditasi_id = localStorage.accreditation_id;
+            $('#hidden').append('<input type="hidden" name="accreditation_id" value="'+ akreditasi_id +'"/>');
             setTimeout(function() {
                 $('#loader-page').css('display', 'none');
                 $('#container-st4').css('display', 'block');

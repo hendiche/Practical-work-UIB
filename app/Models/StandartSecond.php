@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ProgramStudy;
+use App\Models\Accreditation;
 
 class StandartSecond extends Model
 {
@@ -19,8 +19,8 @@ class StandartSecond extends Model
     	'created_at', 'updated_at',
     ];
 
-    public function programStudy()
+    public function accreditation()
     {
-    	return $this->belongsTo(ProgramStudy::class);
+    	return $this->belongsTo(Accreditation::class);
     }
 }

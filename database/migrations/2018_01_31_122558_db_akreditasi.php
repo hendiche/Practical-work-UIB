@@ -26,8 +26,8 @@ class DbAkreditasi extends Migration
             $table->integer('prodi_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
-            $table->foreign('prodi_id')->references('id')->on('program_studies');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('prodi_id')->references('id')->on('program_studies')->onDelete('cascade');;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
             $table->timestamps();
         });
@@ -39,7 +39,7 @@ class DbAkreditasi extends Migration
             $table->string('val12');
             $table->integer('accreditation_id')->unsigned();
 
-            $table->foreign('accreditation_id')->references('id')->on('accreditations');
+            $table->foreign('accreditation_id')->references('id')->on('accreditations')->onDelete('cascade');;
 
             $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
@@ -55,7 +55,7 @@ class DbAkreditasi extends Migration
             $table->string('val26');
             $table->integer('accreditation_id')->unsigned();
 
-            $table->foreign('accreditation_id')->references('id')->on('accreditations');
+            $table->foreign('accreditation_id')->references('id')->on('accreditations')->onDelete('cascade');;
 
             $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
@@ -82,7 +82,7 @@ class DbAkreditasi extends Migration
             $table->string('val342');
             $table->integer('accreditation_id')->unsigned();
 
-            $table->foreign('accreditation_id')->references('id')->on('accreditations');
+            $table->foreign('accreditation_id')->references('id')->on('accreditations')->onDelete('cascade');;
 
             $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
@@ -117,7 +117,7 @@ class DbAkreditasi extends Migration
             $table->string('opsi');
             $table->integer('accreditation_id')->unsigned();
 
-            $table->foreign('accreditation_id')->references('id')->on('accreditations');
+            $table->foreign('accreditation_id')->references('id')->on('accreditations')->onDelete('cascade');;
 
             $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
@@ -155,7 +155,7 @@ class DbAkreditasi extends Migration
             $table->string('opsi');
             $table->integer('accreditation_id')->unsigned();
 
-            $table->foreign('accreditation_id')->references('id')->on('accreditations');
+            $table->foreign('accreditation_id')->references('id')->on('accreditations')->onDelete('cascade');;
 
             $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
@@ -181,7 +181,7 @@ class DbAkreditasi extends Migration
             $table->string('val652');
             $table->integer('accreditation_id')->unsigned();
 
-            $table->foreign('accreditation_id')->references('id')->on('accreditations');
+            $table->foreign('accreditation_id')->references('id')->on('accreditations')->onDelete('cascade');;
 
             $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();
@@ -199,7 +199,7 @@ class DbAkreditasi extends Migration
             $table->string('val732');
             $table->integer('accreditation_id')->unsigned();
 
-            $table->foreign('accreditation_id')->references('id')->on('accreditations');
+            $table->foreign('accreditation_id')->references('id')->on('accreditations')->onDelete('cascade');;
 
             $table->decimal('score', 8, 4)->unsigned();
             $table->timestamps();

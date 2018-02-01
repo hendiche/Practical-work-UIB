@@ -410,7 +410,7 @@
                                 </div>
                                 <div class="radio">
                                     <label>{{ Form::radio('5.7.4', 1) }} Upaya dinilai kurang dan hasilnya tidak nampak, atau tidak ada upaya</label>
-                                </div
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>5.7.5 &nbsp; Pengembangan perilaku kecendekiawanan dalam bentuk kegiatan antara lain dapat berupa:
@@ -433,6 +433,7 @@
                                     <label>{{ Form::radio('5.7.5', 1) }} Kegiatan yang dilakukan tidak menunjang pengembangan perilaku kecendekiawanan</label>
                                 </div>
                             </div>
+                            <div id="hidden"></div>
                             {{ Form::submit('LANJUT KE STANDAR 5', ['class' => 'btn btn-block btn-success']) }}
                         {{ Form::close() }}
                     </div>
@@ -450,6 +451,8 @@
             localStorage.setItem('value5', JSON.stringify(value));
             window.location.href = '{{ route("standart6") }}';
         } else {
+            var akreditasi_id = localStorage.accreditation_id;
+            $('#hidden').append('<input type="hidden" name="accreditation_id" value="'+ akreditasi_id +'"/>');
             setTimeout(function() {
                 $('#loader-page').css('display', 'none');
                 $('#container-st5').css('display', 'block');

@@ -260,6 +260,7 @@
                                     </table>
                                 </div>
                             </div>
+                            <div id="hidden"></div>
                             {{ Form::submit('LANJUT KE STANDAR 7', ['class' => 'btn btn-block btn-success']) }}
                         {{ Form::close() }}
                     </div>
@@ -276,6 +277,8 @@
           localStorage.setItem('value6', JSON.stringify(value));
           window.location.href = '{{ route("standart7") }}';
         } else {
+            var akreditasi_id = localStorage.accreditation_id;
+            $('#hidden').append('<input type="hidden" name="accreditation_id" value="'+ akreditasi_id +'"/>');
             setTimeout(function() {
                 $('#loader-page').css('display', 'none');
                 $('#container-st6').css('display', 'block');

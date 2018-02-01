@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Accreditation;
 
-class StandartFirst extends Model
+class StandartSeventh extends Model
 {
     protected $fillable = [
-    	'val11a', 'val11b', 'val12', 'score'
+    	'val711', 'val712', 'val713', 'val714', 'val721', 'val722',
+        'val731', 'val732', 'score'
     ];
 
     protected $guarded = [

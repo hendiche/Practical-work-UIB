@@ -84,13 +84,45 @@
                 flex-direction: column;
             }
         }
+
+        #admin {
+            margin-top: -20px;
+        }
+        #left-panel {
+            position: absolute;
+            top: 55px;
+            bottom: 0;
+            background-color: #00254E;
+            padding: 0;
+        }
+        #left-panel ul li {
+            font-size: 20px;
+        }
+        #left-panel ul.nav>li>a {
+            color: #eee;
+        }
+        #left-panel ul.nav>li>a:hover, #left-panel ul.nav>li>a:focus, #left-panel ul.nav>li>a:visited {
+            background-color: #011e3e;
+        }
+        #left-panel ul ul, #left-panel ul.nav a:hover {
+            border-radius: 0;
+        }
+        #right-panel {
+            margin-left: 16.66666667%;
+        }
+        #user-profile.dropdown>a:focus {
+            background-color: #011e3e;
+        }
+        #user-profile.dropdown>a {
+            color: #fff;
+        }
     </style>
     @stack('pageCss')
 
     <!-- Script -->
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
 </head>
 <body>
     <div id="app">
@@ -121,6 +153,19 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+                        @if (Auth::check())
+                            @role('Admin')
+                            @else
+                            <li class="dropdown" id="user-profile">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                                </ul>
+                            </li>
+                            @endrole
+                        @endif
                         <!-- Authentication Links -->
                         <!-- @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -151,7 +196,33 @@
             </div>
         </nav>
 
-        @yield('content')
+        
+        @role('Admin')
+            <div id="admin">
+                <div class="col-md-2" id="left-panel">
+                    <div class="fluid-container">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ Auth::user()->name }}
+                                <span class="caret"></span></a>
+                                <ul class="dropdown-menu" style="min-width: 100%">
+                                    <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ route('admin.index') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li><a href="{{ route('admin.user') }}"><i class="fa fa-group" aria-hidden="true"></i> Users</a></li>
+                            <li><a href="{{ route('admin.role') }}"><i class="fa fa-vcard-o" aria-hidden="true"></i> Roles</a></li>
+                            <li><a href="{{ route('admin.prodi') }}"><i class="fa fa-sitemap" aria-hidden="true"></i> Program Studi</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-10" id="right-panel">
+                    @yield('content')
+                </div>
+            </div>
+        @else
+            @yield('content')
+        @endrole
     </div>
     {{-- MODAL --}}
     <div id="warningModal" class="modal fade" role="dialog">
@@ -181,6 +252,23 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div id="formConfirmation" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-size">
+            <div class="modal-content">
+                <div class="modal-body modal-text">
+                    <p>Apakah anda yakin ingin menghapus?</p>
+                    {{ Form::open(['url' => 'ROUTEDESTROY', 'method' => 'POST', 'id' => "modalDestroy"]) }}
+                    <input type="hidden" name="id" id="form-id">
+                </div>
+                <div class="modal-footer">
+                    {{ Form::submit('Yes', ['class' => 'btn btn-default']) }}
+                    {{ Form::close() }}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
