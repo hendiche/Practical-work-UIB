@@ -38,7 +38,7 @@ class HomeController extends Controller
     }
 
     public function list() {
-      return view('list')->with('accreditations', Accreditation::get());
+      return view('list')->with('accreditations', Accreditation::where('total_score', '!=', '0')->get());
     }
 
     public function view($id) {
